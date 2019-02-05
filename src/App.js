@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
+import BabyFoodOutput from './Components/BabyFoodOutput';
 
 
 
@@ -37,7 +38,7 @@ class App extends Component {
 
   /* Taking information from BabyFoodForm and saving into the App State */
   babyFood = (babyFood) => {
-    this.setState( (prevState) => ({
+    this.setState((prevState) => ({
       food: {
         ...this.state.food,
         data: [...this.state.food.data, babyFood]
@@ -45,12 +46,12 @@ class App extends Component {
     }))
   }
 
-  
+
 
 
   render() {
 
-    const { type } = this.state;
+    const { type, food } = this.state;
 
     return (
       <div className="flexContainer flexColumn fullHeight ">
@@ -75,10 +76,10 @@ class App extends Component {
 
             </div>
             <div className="babyInput flexItem">
-              <BabyFoodForm babyFood={this.babyFood}/>
+              <BabyFoodForm babyFood={this.babyFood} />
             </div>
             <div className="babyOutput flexItem">
-             {this.state.food.title} 
+              <BabyFoodOutput food={food} />
             </div>
 
           </main>
