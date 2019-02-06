@@ -44,6 +44,8 @@ class App extends Component {
         data: [...this.state.food.data, babyFood]
       }
     }))
+    console.log(this.state.food);
+    
   }
 
 
@@ -79,7 +81,7 @@ class App extends Component {
               <BabyFoodForm babyFood={this.babyFood} />
             </div>
             <div className="babyOutput flexItem">
-              <BabyFoodOutput food={food} />
+              {/* <BabyFoodOutput food={food} /> */}
             </div>
 
           </main>
