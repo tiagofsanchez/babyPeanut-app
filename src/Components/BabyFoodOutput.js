@@ -6,7 +6,7 @@ class BabyFoodOutput extends React.Component {
         const { food } = this.props
         return (
             <div>
-                {food.data}
+                {food.data.map(data => data.text)}
             </div>
         )
     }
