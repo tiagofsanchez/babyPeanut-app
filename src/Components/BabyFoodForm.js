@@ -54,7 +54,6 @@ class BabyFoodForm extends React.Component {
             text: text,
         }
         console.log(this.state);
-        
         this.props.babyFood(babyFood);
         this.setState(initialState);
     }
@@ -121,7 +120,7 @@ class BabyFoodForm extends React.Component {
                     />
                     </Form.Group>  
 
-                    <Form.Button color="grey" inverted fluid>Submit</Form.Button>
+                    <Form.Button color="grey" inverted >Submit</Form.Button>
                 </Form>
             </Segment>
 

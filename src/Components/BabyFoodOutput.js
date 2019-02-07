@@ -1,13 +1,16 @@
 import React from 'react';
+import { Segment, Table, Button } from 'semantic-ui-react';
 
+/* This component is not loaded because the sate has not passed any information ?*/
 class BabyFoodOutput extends React.Component {
 
+
     render() {
-        const { food } = this.props
+      
         return (
-            <div>
-                {food.data.map(data => data.text)}
-            </div>
+            <Button>
+            
+            </Button>
         )
     }
 }

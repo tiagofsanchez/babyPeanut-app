@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
-import BabyFoodOutput from './Components/BabyFoodOutput';
+import BabyData from './Components/BabyData';
 
 
 
@@ -81,7 +81,7 @@ class App extends Component {
               <BabyFoodForm babyFood={this.babyFood} />
             </div>
             <div className="babyOutput flexItem">
-              <BabyFoodOutput food={food} /> 
+              <BabyData food={food} /> 
             </div>
 
           </main>
