@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableCell } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 
 
 class BabyFoodOutput extends React.Component {
@@ -27,7 +27,6 @@ class BabyFoodOutput extends React.Component {
                                     <Table.Cell>{food.duration ? food.duration : food.quantity}</Table.Cell>
                                     <Table.Cell>{food.text}</Table.Cell>
                                 </Table.Row>
-                         
                        
                     )
                 })}
