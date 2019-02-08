@@ -9,7 +9,7 @@ class BabyData extends React.Component {
             <div>
                 {/* This will happen only if food.data is true */}
                 {food.data && food.data.map(data => {
-                    return <BabyFoodOutput foodData={data} />
+                    return <BabyFoodOutput food={data} />
                 })}
             </div>
         )
