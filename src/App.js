@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
-import BabyData from './Components/BabyData';
+import BabyFoodOutput from './Components/BabyFoodOutput';
+
 
 
 
@@ -78,16 +79,16 @@ class App extends Component {
 
             </div>
             <div className="babyInput flexItem">
-              <BabyFoodForm babyFood={this.babyFood} />
+              <BabyFoodForm babyFood={ this.babyFood } />
             </div>
             <div className="babyOutput flexItem">
-              <BabyData food={food} /> 
+              <BabyFoodOutput food={ food }/> 
             </div>
 
           </main>
           <aside className="sidebar sidebarLeft">
             <h2><i className="em em-paperclip"></i> menu</h2>
-            <VerticalMenu menu={this.changeBabyForm} />
+            <VerticalMenu menu={ this.changeBabyForm } />
 
           </aside>
 
