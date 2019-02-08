@@ -93,7 +93,7 @@ class App extends Component {
           </aside>
 
         </div>
-        <footer className="flexContainer flexCenter blueBackground whiteText height50">&copy; babyPeanut </footer>
+        <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>
       </div >
     );
   }

@@ -20,14 +20,13 @@ class BabyFoodOutput extends React.Component {
                     </Table.Header>
                 </Table>
                 {food.data && food.data.map(food => {
-                    return (  
-                                <Table.Row>
-                                    <Table.Cell>{food.datetime}</Table.Cell>
-                                    <Table.Cell>{food.breast ? food.breast : <p>Formula</p>}</Table.Cell>
-                                    <Table.Cell>{food.duration ? food.duration : food.quantity}</Table.Cell>
-                                    <Table.Cell>{food.text}</Table.Cell>
-                                </Table.Row>
-                       
+                    return (
+                        <Table.Row>
+                            <Table.Cell>{food.datetime}</Table.Cell>
+                            <Table.Cell>{food.breast ? food.breast : <p>Formula</p>}</Table.Cell>
+                            <Table.Cell>{food.duration ? food.duration : food.quantity}</Table.Cell>
+                            <Table.Cell>{food.text}</Table.Cell>
+                        </Table.Row>
                     )
                 })}
             </div>
