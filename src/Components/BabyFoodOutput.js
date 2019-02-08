@@ -1,15 +1,41 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment , Table } from 'semantic-ui-react';
 
 /* This component is not loaded because the sate has not passed any information ?*/
 class BabyFoodOutput extends React.Component {
-
+    state = {
+        show: null
+    }
 
     render() {
         const { food } = this.props;
 
         return (
-            <Segment basic>
+            <div style={{margin:"10px"}}>
+            <Table celled>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Header</Table.HeaderCell>
+                        <Table.HeaderCell>Header</Table.HeaderCell>
+                        <Table.HeaderCell>Header</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+            </Table>
+            
+            </div>
+
+            
+            
+            
+            /* <Segment basic>
+            <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Breast / Formula</th>
+                        <th>Duration / Quantity</th>
+                        <th>Your Notes</th>
+                    </tr>
+                </thead>
             <table>
                 <tbody>
                     <tr>
@@ -20,7 +46,7 @@ class BabyFoodOutput extends React.Component {
                     </tr>
                 </tbody>
             </table>
-            </Segment>
+            </Segment> */
         )
     }
 }
