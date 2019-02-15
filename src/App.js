@@ -46,15 +46,20 @@ class App extends Component {
       }
     }))
     console.log(this.state.food);
-    
+
   }
 
+  /* receive the edits and change the state of the App in a single source of true */
+  updateBabyFood = (text, key) => {
+    console.log(text);
+    console.log(key);
 
+  }
 
 
   render() {
 
-    const { type , food } = this.state;
+    const { type, food } = this.state;
 
     return (
       <div className="flexContainer flexColumn fullHeight ">
@@ -79,16 +84,16 @@ class App extends Component {
 
             </div>
             <div className="babyInput flexItem">
-              <BabyFoodForm babyFood={ this.babyFood } />
+              <BabyFoodForm babyFood={this.babyFood} />
             </div>
             <div className="babyOutput flexItem">
-              <BabyFoodOutput food={ food }/> 
+              <BabyFoodOutput food={food} onEdit={this.updateBabyFood} />
             </div>
 
           </main>
           <aside className="sidebar sidebarLeft">
             <h2><i className="em em-paperclip"></i> menu</h2>
-            <VerticalMenu menu={ this.changeBabyForm } />
+            <VerticalMenu menu={this.changeBabyForm} />
 
           </aside>
 
