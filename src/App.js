@@ -53,7 +53,6 @@ class App extends Component {
   updateBabyFood = (text, key) => {
     console.log(text);
     console.log(key);
-
   }
 
 

@@ -4,8 +4,11 @@ import { Table, Input } from 'semantic-ui-react';
 
 class BabyFoodOutput extends React.Component {
     
+    
     handleEdit=( event , key )=> {
+        debugger
        this.props.onEdit (event.target.value, key)
+       
     };
 
     render() {
@@ -35,7 +38,7 @@ class BabyFoodOutput extends React.Component {
                                         <Input
                                             key={food.id}
                                             value={food.text}
-                                            onChange={(event, key ) =>this.handleEdit(event, key)}
+                                            onChange={( event )=>this.handleEdit(event, food.id )}
                                             transparent
                                         >
                                         </Input>
