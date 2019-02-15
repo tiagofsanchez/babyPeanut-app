@@ -108,12 +108,7 @@ body {
 
 .babyOutput {
   margin: 5px;
-  background-color: #c9d0db; 
   border-radius: 10px;
-}
-
-.footer {
- 
 }
 
 
@@ -123,7 +118,7 @@ body {
 .main{
   order: 2;
   padding: 10px;
-  background-color: #e5edf9;
+  background-color: #0831fb00;
 }
 
 .sidebar {

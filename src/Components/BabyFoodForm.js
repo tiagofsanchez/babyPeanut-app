@@ -12,8 +12,9 @@ const timeOptions = [
 ];
 
 const breastOptions = [
-    { key: 'right', text: 'right breast', value: 'right' },
-    { key: 'left', text: 'left breast', value: 'left' },
+    { key: 'right', text: 'right breast', value: 'right breast' },
+    { key: 'left', text: 'left breast', value: 'left breast' },
+    { key: 'both', text: 'both breasts', value: 'both breasts' },
 ];
 
 
@@ -120,7 +121,7 @@ class BabyFoodForm extends React.Component {
                     />
                     </Form.Group>  
 
-                    <Form.Button color="grey" inverted >Submit</Form.Button>
+                    <Form.Button color="grey" inverted fluid>Submit</Form.Button>
                 </Form>
             </Segment>
 

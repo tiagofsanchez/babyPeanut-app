@@ -54,7 +54,7 @@ class App extends Component {
 
   render() {
 
-    const { type, food } = this.state;
+    const { type , food } = this.state;
 
     return (
       <div className="flexContainer flexColumn fullHeight ">
