@@ -1,12 +1,16 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Input } from 'semantic-ui-react';
 
 
 class BabyFoodOutput extends React.Component {
+    
+    handleCorrection=(event , value )=> {
+        console.log(this.props.food.id);
+    };
 
     render() {
         const { food } = this.props;
-
+        
         return (
             <div style={{ margin: "10px" }}>
                 <Table unstackable size="small" >
@@ -20,13 +24,19 @@ class BabyFoodOutput extends React.Component {
                     </Table.Header>
 
                     {food.data && food.data.map(food => {
+                        console.log(food.key);
                         return (
                             <Table.Body>
                                 <Table.Row key={food.id} >
                                     <Table.Cell >{food.datetime}</Table.Cell>
                                     <Table.Cell >{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{food.duration ? food.duration : food.quantity}</Table.Cell>
-                                    <Table.Cell>{food.text}</Table.Cell>
+                                    <Table.Cell>
+                                        <Input
+                                            value={food.text}
+                                            onChange={(event, value) =>this.handleCorrection(event, value) }>
+                                        </Input>
+                                    </Table.Cell>
                                 </Table.Row>
                             </Table.Body>
                         )
