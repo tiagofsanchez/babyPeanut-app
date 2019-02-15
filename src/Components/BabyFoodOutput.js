@@ -9,7 +9,7 @@ class BabyFoodOutput extends React.Component {
 
         return (
             <div style={{ margin: "10px" }}>
-                <Table basic unstackable size="small" color="grey" inverted>
+                <Table basic unstackable size="small" >
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Time</Table.HeaderCell>
@@ -18,17 +18,18 @@ class BabyFoodOutput extends React.Component {
                             <Table.HeaderCell>Your Notes</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
+
+                    {food.data && food.data.map(food => {
+                        return (
+                            <Table.Row >
+                                <Table.Cell>{food.datetime}</Table.Cell>
+                                <Table.Cell>{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
+                                <Table.Cell>{food.duration ? food.duration : food.quantity}</Table.Cell>
+                                <Table.Cell>{food.text}</Table.Cell>
+                            </Table.Row>
+                        )
+                    })}
                 </Table>
-                {food.data && food.data.map(food => {
-                    return (
-                        <Table.Row>
-                            <Table.Cell>{food.datetime}</Table.Cell>
-                            <Table.Cell>{food.breast ? food.breast : <p>Formula</p>}</Table.Cell>
-                            <Table.Cell>{food.duration ? food.duration : food.quantity}</Table.Cell>
-                            <Table.Cell>{food.text}</Table.Cell>
-                        </Table.Row>
-                    )
-                })}
             </div>
 
         )
