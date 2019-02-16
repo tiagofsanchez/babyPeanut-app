@@ -42,17 +42,27 @@ class App extends Component {
     this.setState((prevState) => ({
       food: {
         ...this.state.food,
-        data: [...this.state.food.data, babyFood]
+        data: [babyFood, ...this.state.food.data]
       }
     }))
     console.log(this.state.food);
 
   }
 
-  /* receive the edits and change the state of the App in a single source of true */
-  updateBabyFood = (text, key) => {
-    console.log(text);
-    console.log(key);
+  /* receive the edits of text and change the state of the App so that we have a single source of true */
+  updateBabyFood = (text, id) => {
+    const { food } = this.state;
+    this.setState({
+      food: {
+        ...food, 
+        data: food.data.map(food => {
+          if (food.id === id) {
+            return { 
+            text: text,                 
+          };
+        }})
+      }
+    })
   }
 
 

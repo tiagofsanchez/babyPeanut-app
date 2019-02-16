@@ -6,9 +6,7 @@ class BabyFoodOutput extends React.Component {
     
     
     handleEdit=( event , key )=> {
-        debugger
-       this.props.onEdit (event.target.value, key)
-       
+       this.props.onEdit (event.target.value, key) 
     };
 
     render() {
@@ -27,7 +25,6 @@ class BabyFoodOutput extends React.Component {
                     </Table.Header>
 
                     {food.data && food.data.map(food => {
-                        console.log(food.key);
                         return (
                             <Table.Body>
                                 <Table.Row key={food.id} >
