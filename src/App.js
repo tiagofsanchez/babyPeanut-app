@@ -59,12 +59,12 @@ class App extends Component {
     console.log(food)
     food.data.map(food => {
       if (food.id === id ) {
-        this.setState({
+        return (this.setState({
           food: {
             ...food,
             text: text
           }
-        })
+        }))
       }
     })
   }

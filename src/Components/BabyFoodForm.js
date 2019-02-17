@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Label, Segment } from 'semantic-ui-react';
 import shortid from 'shortid';
-import './BabyFoodForm.css';
+
 
 
 
@@ -70,7 +70,7 @@ class BabyFoodForm extends React.Component {
             <Segment basic >
                 <Form onSubmit={this.handleSubmit}>
                     
-                    <Form.Group className="itemCenter">
+                    <Form.Group >
                     <Label basic><i className="em em-breast-feeding"></i></Label>
                         <Form.Dropdown
                             name='breast'
@@ -90,7 +90,7 @@ class BabyFoodForm extends React.Component {
                             value={duration}
                         />
                     </Form.Group>
-                    <Form.Group className="itemCenter" >
+                    <Form.Group >
                     <Label basic><i className="em em-baby_bottle"></i></Label>
     
                         <Form.Dropdown
@@ -103,7 +103,7 @@ class BabyFoodForm extends React.Component {
                         />
                     </Form.Group>
 
-                    <Form.Group className="itemCenter" >
+                    <Form.Group  >
                         <Label basic><i className="em em-spiral_calendar_pad"></i></Label>
                         <Form.Input
                             name='datetime'
