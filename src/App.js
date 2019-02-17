@@ -3,6 +3,7 @@ import './App.css';
 import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
+import BabyOutputForm from './Components/BabyOutputForm'
 
 
 
@@ -96,7 +97,14 @@ class App extends Component {
 
             </div>
             <div className="babyInput flexItem">
+              {type === 'Food' ?
               <BabyFoodForm babyFood={this.babyFood} />
+              :
+              type ==='Output' ?
+              <BabyOutputForm />
+              :
+              null
+              }
             </div>
             <div className="babyOutput flexItem">
               <BabyFoodOutput food={food} onEdit={this.updateBabyFood} />
