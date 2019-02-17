@@ -36,8 +36,8 @@ class BabyFoodOutput extends React.Component {
                                             key={food.id}
                                             value={food.text}
                                             onChange={( event )=>this.handleEdit(event, food.id )}
-                                        
-                                            fluid
+                                                transparent   
+                                                fluid
                                         >
                                         </Input>
                                     </Table.Cell>

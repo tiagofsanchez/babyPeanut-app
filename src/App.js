@@ -53,22 +53,19 @@ class App extends Component {
   updateBabyFood = (text, id) => {
     console.log(id);
     console.log(text);
-    
     const { food } = this.state;
-    this.setState({
-      food: {
-        ...food,
-        data: food.data.map(food => {
-          if (food.id === id) {
-            return {
-              text: text,
-            };
-          } else {
-            return food;
+    console.log(food.data[0].id);
+    console.log(food)
+    food.data.map(food => {
+      if (food.id === id ) {
+        this.setState({
+          food: {
+            ...food,
+            text: text
           }
         })
       }
-    }) 
+    })
   }
 
 
