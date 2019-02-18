@@ -87,7 +87,7 @@ class App extends Component {
       <div className="flexContainer flexColumn fullHeight ">
         <nav className="flexContainer blueBackground">
           <ul className="nav flexItem flexStart">
-            <li><i className="em em-baby"></i> babyPeanut <i className="em em-peanuts"></i> app</li>
+            <li><i className="em em-baby"></i>babyPeanut <i className="em em-peanuts"></i> app</li>
           </ul>
         </nav>
         <div className="flexContainer flexItem">

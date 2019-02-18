@@ -1,6 +1,7 @@
 import React from 'react';
-import { Form, Label, Segment } from 'semantic-ui-react';
+import { Form, Segment } from 'semantic-ui-react';
 import shortid from 'shortid';
+import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 
@@ -70,8 +71,10 @@ class BabyFoodForm extends React.Component {
         return (
             <Segment basic >
                 <Form onSubmit={this.handleSubmit}>
+                    <div className='field-container0'>
                         <i className="em em-breast-feeding"></i>
                         <Form.Dropdown
+                            className="breast-dropdown"
                             name='breast'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                             placeholder='breast side...'
@@ -80,6 +83,7 @@ class BabyFoodForm extends React.Component {
                             value={breast}
                         />
                         <Form.Dropdown
+                            className="duration-dropdown"
                             name='duration'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                             placeholder='time of breastfeeding...'
@@ -89,6 +93,7 @@ class BabyFoodForm extends React.Component {
                         />
                         <i className="em em-baby_bottle"></i>
                         <Form.Dropdown
+                            className="quantity-dropdown"
                             name='quantity'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                             placeholder='quantity given..'
@@ -96,7 +101,9 @@ class BabyFoodForm extends React.Component {
                             options={quantityOptions}
                             value={quantity}
                         />
+                        <i className="em em-calendar"></i>
                         <DateTimeInput
+                            className="date-time1"
                             name='datetime'
                             placeholder='data and time'
                             value={datetime}
@@ -105,15 +112,15 @@ class BabyFoodForm extends React.Component {
                         />
                         <i className="em em-spiral_note_pad"></i>
                         <Form.TextArea
+                            className="text"
                             name='text'
                             value={text}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                             placeholder='Any notes that you want...'
                             width={16}
                         />
-                   
-
-                   <Form.Button className='button' color='orange'>Save</Form.Button>
+                        <Form.Button className='button' color='orange'>Save</Form.Button>
+                    </div>
                 </Form>
             </Segment>
 

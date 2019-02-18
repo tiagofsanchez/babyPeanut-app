@@ -49,7 +49,7 @@ class BabyOutputForm extends React.Component {
         return (
             <Segment basic>
                 <Form onSubmit={this.handleSubmit}>
-                    <div className='field-container'>
+                    <div className='field-container1'>
                         <i className="em em-hankey"></i>
                         <Form.Dropdown
                             className='dropdown'
