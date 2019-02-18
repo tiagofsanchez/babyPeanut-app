@@ -1,0 +1,60 @@
+/* *********************************
+*          Grid Styling           *
+**********************************/
+
+.field-container1 {
+    display: grid;
+    grid-template-columns: 25px 1fr 1fr;
+    grid-template-rows: 40px 75px auto; 
+    grid-gap: 10px;
+    grid-template-areas: 
+    " icon1 field1 field2 "
+    " icon text text"
+    " . button ."
+} 
+
+.em-hankey {
+    grid-area: icon1;
+}
+
+.dropdown {
+    grid-area: field1;
+}
+
+.date-time {
+    grid-area: field2;
+}
+
+.em-spiral_note_pad {
+    grid-area: icon;
+}
+
+.text {
+    grid-area:text;
+}
+
+.button { 
+    grid-area: button;
+}
+
+
+/* *********************************
+*         Grid Responsive         *
+**********************************/
+
+@media screen and (max-width: 580px) { 
+    .field-container1 {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto  40px 60px auto 75px auto; 
+        grid-template-areas: 
+        "icon1"
+        "field1"
+        "field2"
+        "icon"
+        "text"
+        "button"
+    } 
+
+
+}
