@@ -19,7 +19,7 @@ export default class VerticalMenu extends Component {
     const { activeItem } = this.state; 
   
       return (
-          <div>
+        
               <Menu vertical secondary fluid>
                   <Menu.Item
                       name='Food'
@@ -33,7 +33,7 @@ export default class VerticalMenu extends Component {
                      
                   />
               </Menu>
-          </div>
+          
         )
     }
 }

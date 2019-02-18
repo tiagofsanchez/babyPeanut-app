@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Label, Segment } from 'semantic-ui-react';
 import shortid from 'shortid';
+import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 
 
@@ -27,7 +28,7 @@ const quantityOptions = [
 ]
 
 const initialState = {
-    
+
     breast: '',
     duration: '',
     quantity: '',
@@ -69,9 +70,9 @@ class BabyFoodForm extends React.Component {
         return (
             <Segment basic >
                 <Form onSubmit={this.handleSubmit}>
-                    
+
                     <Form.Group >
-                    <Label basic><i className="em em-breast-feeding"></i></Label>
+                        <Label basic><i className="em em-breast-feeding"></i></Label>
                         <Form.Dropdown
                             name='breast'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -80,7 +81,6 @@ class BabyFoodForm extends React.Component {
                             options={breastOptions}
                             value={breast}
                         />
-                        <label> and duration:</label>
                         <Form.Dropdown
                             name='duration'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -89,10 +89,7 @@ class BabyFoodForm extends React.Component {
                             options={timeOptions}
                             value={duration}
                         />
-                    </Form.Group>
-                    <Form.Group >
-                    <Label basic><i className="em em-baby_bottle"></i></Label>
-    
+                        <Label basic><i className="em em-baby_bottle"></i></Label>
                         <Form.Dropdown
                             name='quantity'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -104,27 +101,28 @@ class BabyFoodForm extends React.Component {
                     </Form.Group>
 
                     <Form.Group  >
-                        <Label basic><i className="em em-spiral_calendar_pad"></i></Label>
-                        <Form.Input
+                        {/* <Label basic><i className="em em-spiral_calendar_pad"></i></Label> */}
+                        <DateTimeInput
                             name='datetime'
-                            type="datetime-local"
+                            placeholder='data and time'
                             value={datetime}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                            iconPosition="left"
                         />
                     </Form.Group>
 
                     <Form.Group  >
-                    <Label basic><i className="em em-spiral_note_pad"></i></Label>
-                    <Form.TextArea
-                        name='text'
-                        value={text}
-                        onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                        placeholder='Any notes that you want...'
-                        width = {16}
-                    />
-                    </Form.Group>  
+                        <Label basic><i className="em em-spiral_note_pad"></i></Label>
+                        <Form.TextArea
+                            name='text'
+                            value={text}
+                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                            placeholder='Any notes that you want...'
+                            width={16}
+                        />
+                    </Form.Group>
 
-                    <Form.Button color="grey" inverted fluid>Submit</Form.Button>
+                    <Form.Button color="grey">Submit</Form.Button>
                 </Form>
             </Segment>
 

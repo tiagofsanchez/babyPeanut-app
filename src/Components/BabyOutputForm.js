@@ -49,7 +49,7 @@ class BabyOutputForm extends React.Component {
             <Segment basic>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                    <Label basic><i className="em em-spiral_calendar_pad"></i></Label>
+                    <Label basic><i className="em em-hankey"></i></Label>
                     <Form.Dropdown
                         name='output'
                         onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -57,26 +57,14 @@ class BabyOutputForm extends React.Component {
                         selection
                         options={outputOptions}
                         value={output} 
-                    /> 
-                    </Form.Group>
-                    <Form.Group  >
-                        <Label basic><i className="em em-spiral_calendar_pad"></i></Label>
+                    />
                         <DateTimeInput
                             name = 'datetime'
-                            placeholder = 'Date Time'
+                            placeholder = 'date and time '
                             value = {datetime}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            
+                            iconPosition="left"
                         />
-
-                      
-                        
-                        {/* <Form.Input
-                            name='datetime'
-                            type="datetime-local"
-                            value={datetime}
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                        /> */}
                     </Form.Group>
                     <Form.Group >
                         <Label basic><i className="em em-spiral_note_pad"></i></Label>
@@ -88,7 +76,7 @@ class BabyOutputForm extends React.Component {
                             width={16}
                         />
                     </Form.Group>
-                    <Form.Button color="grey" inverted fluid>Submit</Form.Button>
+                    <Form.Button color="grey">Save</Form.Button>
                 </Form>
             </Segment>
         )

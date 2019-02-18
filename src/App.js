@@ -97,7 +97,7 @@ class App extends Component {
                 <h3> <span className="highlight"> Food </span> for your <i className="em em-baby"></i> </h3>
                 :
                 type === 'Output' ?
-                  <h3> <span className="highlight"> Baby  </span> <i className="em em-hankey"></i> </h3>
+                  <h3> Your <span className="highlight">Baby</span>  <i className="em em-hankey"></i> </h3>
                   :
                     null}
 
