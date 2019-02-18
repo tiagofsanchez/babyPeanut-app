@@ -61,23 +61,25 @@ class App extends Component {
   }
 
 
-  /* receive the edits of text and change the state of the App so that we have a single source of true */
+  /* THIS IS WRONG: Need to review with Diogo's input */
   updateBabyFood = (text, id) => {
-    console.log(id);
-    console.log(text);
     const { food } = this.state;
-    console.log(food.data[0].id);
-    console.log(food)
-    food.data.map(food => {
-      if (food.id === id) {
-        return (this.setState({
-          food: {
-            ...food,
-            text: text
-          }
-        }))
+    this.setState(prevState => ({
+      food: {
+       ...food,
+       data: food.data.map(item => {
+         if (item.id === id) {
+           return {
+             ...item, 
+             text
+           }
+         } else {
+           return item
+         }
+       })  
       }
-    })
+    }))
+    console.log(food);    
   }
 
 
