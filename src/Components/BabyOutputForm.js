@@ -1,6 +1,7 @@
 import React from 'react';
 import shortid from 'shortid';
-import { Segment, Form , Label } from 'semantic-ui-react';
+import { Segment, Form , Label ,Icon } from 'semantic-ui-react';
+import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 
 const initialstate = {
@@ -60,12 +61,22 @@ class BabyOutputForm extends React.Component {
                     </Form.Group>
                     <Form.Group  >
                         <Label basic><i className="em em-spiral_calendar_pad"></i></Label>
-                        <Form.Input
+                        <DateTimeInput
+                            name = 'datetime'
+                            placeholder = 'Date Time'
+                            value = {datetime}
+                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                            
+                        />
+
+                      
+                        
+                        {/* <Form.Input
                             name='datetime'
                             type="datetime-local"
                             value={datetime}
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                        />
+                        /> */}
                     </Form.Group>
                     <Form.Group >
                         <Label basic><i className="em em-spiral_note_pad"></i></Label>
