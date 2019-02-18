@@ -55,8 +55,7 @@ class BabyOutputForm extends React.Component {
                         placeholder='pass urine or motion ...'
                         selection
                         options={outputOptions}
-                        value={output}
-                        
+                        value={output} 
                     /> 
                     </Form.Group>
                     <Form.Group  >

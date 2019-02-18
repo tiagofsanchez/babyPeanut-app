@@ -28,12 +28,11 @@ class BabyFoodOutput extends React.Component {
                         return (
                             <Table.Body>
                                 <Table.Row key={food.id} >
-                                    <Table.Cell key={food.id} >{food.datetime}</Table.Cell>
-                                    <Table.Cell key={food.id} >{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
-                                    <Table.Cell key={food.id} >{food.duration ? food.duration : food.quantity}</Table.Cell>
+                                    <Table.Cell >{food.datetime}</Table.Cell>
+                                    <Table.Cell >{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
+                                    <Table.Cell >{food.duration ? food.duration : food.quantity}</Table.Cell>
                                     <Table.Cell>
                                         <Input
-                                            key={food.id}
                                             value={food.text}
                                             onChange={(event) => this.handleEdit(event, food.id)}
                                             transparent

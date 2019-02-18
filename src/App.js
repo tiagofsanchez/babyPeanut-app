@@ -6,8 +6,6 @@ import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
 
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +18,10 @@ class App extends Component {
         title: 'Output',
         data: [],
       },
-      sleep: {
+      /* sleep: {
         title: 'Sleep',
         data: []
-      },
+      }, */
       type: 'Food',
     }
 
@@ -46,7 +44,6 @@ class App extends Component {
         data: [babyFood, ...this.state.food.data]
       }
     }))
-    console.log(this.state.food);
   }
 
   /* Receives information from BabyOutputForm and saves it into the App state */
@@ -57,11 +54,10 @@ class App extends Component {
         data: [babyOutput, ...this.state.output.data]
       }
     }))
-    console.log(this.state.output);
   }
 
 
-  /* THIS IS WRONG: Need to review with Diogo's input */
+  /* With this the user can update the notes on table below */
   updateBabyFood = (text, id) => {
     const { food } = this.state;
     this.setState(prevState => ({
@@ -103,9 +99,6 @@ class App extends Component {
                 type === 'Output' ?
                   <h3> <span className="highlight"> Baby  </span> <i className="em em-hankey"></i> </h3>
                   :
-                  type === 'Sleep' ?
-                    <h3> Your <span className="highlight"> baby </span> is <i className="em em-sleeping"></i></h3>
-                    :
                     null}
 
             </div>
@@ -126,14 +119,11 @@ class App extends Component {
                 null
               }
             </div>
-
           </main>
           <aside className="sidebar sidebarLeft">
             <h2><i className="em em-paperclip"></i> menu</h2>
             <VerticalMenu menu={this.changeBabyForm} />
-
           </aside>
-
         </div>
         <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>
       </div >
