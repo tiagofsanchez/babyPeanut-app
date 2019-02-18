@@ -3,18 +3,18 @@ import { Table, Input } from 'semantic-ui-react';
 
 
 class BabyFoodOutput extends React.Component {
-    
-    
-    handleEdit=( event , key )=> {
-       this.props.onEdit (event.target.value, key) 
+
+
+    handleEdit = (event, key) => {
+        this.props.onEdit(event.target.value, key)
     };
 
     render() {
         const { food } = this.props;
-        
+
         return (
             <div style={{ margin: "10px" }}>
-                <Table unstackable size="small" >
+                <Table unstackable size="small" basic='very' color='blue'>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Time</Table.HeaderCell>
@@ -35,9 +35,9 @@ class BabyFoodOutput extends React.Component {
                                         <Input
                                             key={food.id}
                                             value={food.text}
-                                            onChange={( event )=>this.handleEdit(event, food.id )}
-                                                transparent   
-                                                fluid
+                                            onChange={(event) => this.handleEdit(event, food.id)}
+                                            transparent
+                                            fluid
                                         >
                                         </Input>
                                     </Table.Cell>

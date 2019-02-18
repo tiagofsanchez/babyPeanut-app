@@ -38,7 +38,7 @@ class App extends Component {
     })
   }
 
-  /* Taking information from BabyFoodForm and saving into the App State */
+  /* Taking information from BabyFoodForm and saving into the App state */
   babyFood = (babyFood) => {
     this.setState((prevState) => ({
       food: {
@@ -47,8 +47,19 @@ class App extends Component {
       }
     }))
     console.log(this.state.food);
-
   }
+
+  /* Receives information from BabyOutputForm and saves it into the App state */
+  babyOutput = (babyOutput) => {
+    this.setState((prevState)=> ({
+      output : {
+        ...this.state.output,
+        data: [babyOutput, ...this.state.output.data]
+      }
+    }))
+    console.log(this.state.output);
+  }
+
 
   /* receive the edits of text and change the state of the App so that we have a single source of true */
   updateBabyFood = (text, id) => {
@@ -58,7 +69,7 @@ class App extends Component {
     console.log(food.data[0].id);
     console.log(food)
     food.data.map(food => {
-      if (food.id === id ) {
+      if (food.id === id) {
         return (this.setState({
           food: {
             ...food,
@@ -98,16 +109,20 @@ class App extends Component {
             </div>
             <div className="babyInput flexItem">
               {type === 'Food' ?
-              <BabyFoodForm babyFood={this.babyFood} />
-              :
-              type ==='Output' ?
-              <BabyOutputForm />
-              :
-              null
+                <BabyFoodForm babyFood={this.babyFood} />
+                :
+                type === 'Output' ?
+                  <BabyOutputForm babyOutput={this.babyOutput}/>
+                  :
+                  null
               }
             </div>
             <div className="babyOutput flexItem">
-              <BabyFoodOutput food={food} onEdit={this.updateBabyFood} />
+              {type === 'Food' ?
+                <BabyFoodOutput food={food} onEdit={this.updateBabyFood} />
+                :
+                null
+              }
             </div>
 
           </main>
