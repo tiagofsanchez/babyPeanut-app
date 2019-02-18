@@ -121,7 +121,7 @@ class App extends Component {
             </div>
           </main>
           <aside className="sidebar sidebarLeft">
-            <h2><i className="em em-paperclip"></i> menu</h2>
+            <h2 className='menu'><i className="em em-paperclip"></i> menu</h2>
             <VerticalMenu menu={this.changeBabyForm} />
           </aside>
         </div>

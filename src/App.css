@@ -53,7 +53,7 @@ body {
   min-height: 100vh;
 }
 .blueBackground {
-  background: lightskyblue;
+  background: rgb(0, 132, 180);
 }
 
 .whiteText {
@@ -102,7 +102,7 @@ body {
 
 .babyInput { 
   margin: 5px;
-  background-color: rgb(240, 240, 240);
+  background-color:  rgb(192, 222, 237, 0.3);
   border-radius: 10px;
 }
 
@@ -118,13 +118,16 @@ body {
 .main{
   order: 2;
   padding: 10px;
-  background-color: #0831fb00;
+
 }
 
 .sidebar {
   width: 20%;
   padding: 15px;
-  background-color: #7c9acc;
+  background-color: rgb(192, 222, 237);
+}
+.menu {
+  color: #f2711c; 
 }
 
 .sidebarLeft{

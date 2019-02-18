@@ -70,9 +70,7 @@ class BabyFoodForm extends React.Component {
         return (
             <Segment basic >
                 <Form onSubmit={this.handleSubmit}>
-
-                    <Form.Group >
-                        <Label basic><i className="em em-breast-feeding"></i></Label>
+                        <i className="em em-breast-feeding"></i>
                         <Form.Dropdown
                             name='breast'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -89,7 +87,7 @@ class BabyFoodForm extends React.Component {
                             options={timeOptions}
                             value={duration}
                         />
-                        <Label basic><i className="em em-baby_bottle"></i></Label>
+                        <i className="em em-baby_bottle"></i>
                         <Form.Dropdown
                             name='quantity'
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
@@ -98,10 +96,6 @@ class BabyFoodForm extends React.Component {
                             options={quantityOptions}
                             value={quantity}
                         />
-                    </Form.Group>
-
-                    <Form.Group  >
-                        {/* <Label basic><i className="em em-spiral_calendar_pad"></i></Label> */}
                         <DateTimeInput
                             name='datetime'
                             placeholder='data and time'
@@ -109,10 +103,7 @@ class BabyFoodForm extends React.Component {
                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                             iconPosition="left"
                         />
-                    </Form.Group>
-
-                    <Form.Group  >
-                        <Label basic><i className="em em-spiral_note_pad"></i></Label>
+                        <i className="em em-spiral_note_pad"></i>
                         <Form.TextArea
                             name='text'
                             value={text}
@@ -120,9 +111,9 @@ class BabyFoodForm extends React.Component {
                             placeholder='Any notes that you want...'
                             width={16}
                         />
-                    </Form.Group>
+                   
 
-                    <Form.Button color="grey">Submit</Form.Button>
+                   <Form.Button className='button' color='orange'>Save</Form.Button>
                 </Form>
             </Segment>
 
