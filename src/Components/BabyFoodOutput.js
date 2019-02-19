@@ -13,7 +13,7 @@ class BabyFoodOutput extends React.Component {
 
         return (
             <div style={{ margin: "10px" }}>
-                <Table unstackable size="small" >
+                <Table unstackable size="small" striped>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Date</Table.HeaderCell>
