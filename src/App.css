@@ -104,11 +104,13 @@ body {
   margin: 5px;
   background-color:  rgb(192, 222, 237, 0.3);
   border-radius: 10px;
+
 }
 
 .babyOutput {
   margin: 5px;
   border-radius: 10px;
+  flex-basis: 200px;
 }
 
 
@@ -122,8 +124,8 @@ body {
 }
 
 .sidebar {
-  width: 20%;
-  padding: 15px;
+  flex-basis: 150px;
+  padding: 10px;
   background-color: rgb(192, 222, 237);
 }
 .menu {

@@ -91,7 +91,7 @@ class App extends Component {
           </ul>
         </nav>
         <div className="flexContainer flexItem">
-          <main className="flexItem main flexContainer flexColumn">
+          <main className="flexItem main flexContainer flexColumn ">
             <div className="menuTitle" >
               {type === 'Food' ?
                 <h3> <span className="highlight"> Food </span> for your <i className="em em-baby"></i> </h3>
