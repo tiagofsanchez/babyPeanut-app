@@ -4,7 +4,6 @@ import { Table, Input } from 'semantic-ui-react';
 
 class BabyFoodOutput extends React.Component {
 
-
     handleEdit = (event, key) => {
         this.props.onEdit(event.target.value, key)
     };
@@ -14,31 +13,34 @@ class BabyFoodOutput extends React.Component {
 
         return (
             <div style={{ margin: "10px" }}>
-                <Table unstackable size="small" basic='very' color='blue'>
+                <Table unstackable size="small" >
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Time</Table.HeaderCell>
-                            <Table.HeaderCell>Breast / Formula</Table.HeaderCell>
-                            <Table.HeaderCell>Duration / Quantity</Table.HeaderCell>
+                            <Table.HeaderCell>Date</Table.HeaderCell>
+                            <Table.HeaderCell singleLine>Feeding</Table.HeaderCell>
+                            <Table.HeaderCell singleLine>What</Table.HeaderCell>
                             <Table.HeaderCell>Your Notes</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
                     {food.data && food.data.map(food => {
                         return (
-                            <Table.Body>
-                                <Table.Row key={food.id} >
-                                    <Table.Cell >{food.datetime}</Table.Cell>
+                            <Table.Body key={food.id}>
+                                <Table.Row >
+                                    <Table.Cell singleLine>{food.datetime}</Table.Cell>
                                     <Table.Cell >{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{food.duration ? food.duration : food.quantity}</Table.Cell>
                                     <Table.Cell>
+                                        {food.text}
+                                        {/* 
+                                        This was here to make the edit happen, but now i will 
                                         <Input
                                             value={food.text}
                                             onChange={(event) => this.handleEdit(event, food.id)}
                                             transparent
                                             fluid
-                                        >
-                                        </Input>
+                                        /> */}
+                                
                                     </Table.Cell>
                                 </Table.Row>
                             </Table.Body>
