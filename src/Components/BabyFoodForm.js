@@ -29,12 +29,13 @@ const quantityOptions = [
 ]
 
 const initialState = {
-
     breast: '',
     duration: '',
     quantity: '',
     datetime: '',
     text: '',
+    disabled: 'true'
+
 };
 
 class BabyFoodForm extends React.Component {
@@ -66,7 +67,7 @@ class BabyFoodForm extends React.Component {
 
     render() {
 
-        const { breast, text, duration, datetime, quantity } = this.state;
+        const { breast, text, duration, datetime, quantity , disabled } = this.state;
         const { editFood } = this.props;
 
         return (
@@ -82,6 +83,7 @@ class BabyFoodForm extends React.Component {
                             selection
                             options={breastOptions}
                             value={breast}
+                            disabled={!disabled}
                         />
                         <Form.Dropdown
                             className="duration-dropdown"
@@ -91,6 +93,8 @@ class BabyFoodForm extends React.Component {
                             selection
                             options={timeOptions}
                             value={duration}
+                            disabled={!disabled}
+                        
                         />
                         <i className="em em-baby_bottle"></i>
                         <Form.Dropdown
@@ -101,6 +105,7 @@ class BabyFoodForm extends React.Component {
                             selection
                             options={quantityOptions}
                             value={quantity}
+                            disabled={disabled}
                         />
                         <i className="em em-calendar"></i>
                         <DateTimeInput

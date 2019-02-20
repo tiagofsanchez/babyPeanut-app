@@ -15,8 +15,8 @@ class BabyFoodEditForm extends React.Component {
                 <Modal
                     open={open}
                     onClose={this.close}
+                    closeIcon
                 >
-                
                 <Modal.Header>Edit your entry below</Modal.Header>
                 <Modal.Content>
                     <BabyFoodForm editFood={editFood}/>
