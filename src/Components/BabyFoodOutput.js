@@ -1,13 +1,14 @@
 import React from 'react';
 import BabyFoodEditForm from './BabyFoodEditForm'
-import { Table, Button, Modal } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 
 
 
 class BabyFoodOutput extends React.Component {
 
     state = {
-        openModal: false
+        openModal: false,
+        editFood: ''
     }
     
     /* 
@@ -17,14 +18,20 @@ class BabyFoodOutput extends React.Component {
     }; */
 
     /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it */
-    handleEditClick = (event , food) => {
+    handleEditClick = (event , item = null ) => {
         const { openModal } = this.state;
         this.setState({
-            openModal: !openModal
-        })
-        debugger
-        return <BabyFoodEditForm food ={ food } trigger = { openModal}  />
+            openModal: !openModal,
+            editFood: item
+        }) 
     }
+
+    closeModal = (isClose) => {
+        this.setState({
+            openModal: isClose
+        })
+    }
+
 
     handleDelete =( event , id ) => {
         this.props.entryDelete(id)
@@ -32,7 +39,7 @@ class BabyFoodOutput extends React.Component {
 
     render() {
         const { food } = this.props;
-        const { openModal } = this.state;
+        const { openModal , editFood } = this.state;
 
         return (
             <div style={{ margin: "10px" }}>
@@ -47,21 +54,23 @@ class BabyFoodOutput extends React.Component {
                         </Table.Row>
                     </Table.Header>
 
-                    {/* This will need to be here so that the header of the table doesn't repeact itself */}
-                    {food.data && food.data.map(food => {
+                    {/* This will need to be here so that the header of the table doesn't repeact itself 
+                    Alterar a inner variable food para foodEntry
+                    */}
+                    {food.data && food.data.map(item => {
                         return (
-                            <Table.Body key={food.id}>
+                            <Table.Body key={item.id}>
                                 <Table.Row >
-                                    <Table.Cell singleLine>{food.datetime}</Table.Cell>
-                                    <Table.Cell >{food.breast ? food.breast : <p>formula</p>}</Table.Cell>
-                                    <Table.Cell >{food.duration ? food.duration : food.quantity}</Table.Cell>
+                                    <Table.Cell singleLine>{item.datetime}</Table.Cell>
+                                    <Table.Cell >{item.breast ? item.breast : <p>formula</p>}</Table.Cell>
+                                    <Table.Cell >{item.duration ? item.duration : item.quantity}</Table.Cell>
                                     <Table.Cell>
-                                        {food.text}
+                                        {item.text}
                                         {/* 
                                         This was here to make the edit happen, but now i will 
                                         <Input
-                                            value={food.text}
-                                            onChange={(event) => this.handleEdit(event, food.id)}
+                                            value={item.text}
+                                            onChange={(event) => this.handleEdit(event, item.id)}
                                             transparent
                                             fluid
                                         /> */}
@@ -72,14 +81,14 @@ class BabyFoodOutput extends React.Component {
                                             color="orange"
                                             icon="edit"
                                             size='mini'
-                                            onClick={event => this.handleEditClick(event, food)}
+                                            onClick={event => this.handleEditClick(event, item)}
                                         />
                                         <Button
                                             basic
                                             color="red"
                                             icon='delete'
                                             size='mini'
-                                            onClick={event => this.handleDelete(event, food.id)}
+                                            onClick={event => this.handleDelete(event, item.id)}
                                         />
                                     </Table.Cell>
                                 </Table.Row>
@@ -87,7 +96,7 @@ class BabyFoodOutput extends React.Component {
                         )
                     })}
                 </Table>
-
+                <BabyFoodEditForm open={openModal} editFood={editFood} isClose={this.closeModal}/>
             </div>
             
 
