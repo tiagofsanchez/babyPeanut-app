@@ -10,7 +10,6 @@ class BabyFoodEditForm extends React.Component {
     render() {
 
         const { editFood , open  } = this.props;
-        debugger
         return (
             <div> 
                 <Modal
@@ -18,9 +17,9 @@ class BabyFoodEditForm extends React.Component {
                     onClose={this.close}
                 >
                 
-                <Modal.Header>Delete Your Account</Modal.Header>
+                <Modal.Header>Edit your entry below</Modal.Header>
                 <Modal.Content>
-                    <BabyFoodForm food={editFood}/>
+                    <BabyFoodForm editFood={editFood}/>
                 </Modal.Content>
                 </Modal>
             </div>

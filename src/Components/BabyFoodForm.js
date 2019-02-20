@@ -66,7 +66,8 @@ class BabyFoodForm extends React.Component {
 
     render() {
 
-        const { breast, text, duration, datetime, quantity } = this.state
+        const { breast, text, duration, datetime, quantity } = this.state;
+        const { editFood } = this.props;
 
         return (
             <Segment basic >
