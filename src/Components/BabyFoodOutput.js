@@ -1,12 +1,23 @@
 import React from 'react';
-import { Table, Input } from 'semantic-ui-react';
+import { Table, Input, Button } from 'semantic-ui-react';
+
 
 
 class BabyFoodOutput extends React.Component {
 
+    /* 
+    This is the old handle edit that was going directly to the state, now I want to try doing this with a Modal
     handleEdit = (event, key) => {
         this.props.onEdit(event.target.value, key)
-    };
+    }; */
+
+    handleEditClick = (event , id) => {
+        console.log(id);
+    }
+
+    handleDelete =( event , id ) => {
+        this.props.entryDelete(id)
+    }
 
     render() {
         const { food } = this.props;
@@ -20,9 +31,11 @@ class BabyFoodOutput extends React.Component {
                             <Table.HeaderCell singleLine>Feeding</Table.HeaderCell>
                             <Table.HeaderCell singleLine>What</Table.HeaderCell>
                             <Table.HeaderCell>Your Notes</Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
+                    {/* This will need to be here so that the header of the table doesn't repeact itself */}
                     {food.data && food.data.map(food => {
                         return (
                             <Table.Body key={food.id}>
@@ -40,7 +53,10 @@ class BabyFoodOutput extends React.Component {
                                             transparent
                                             fluid
                                         /> */}
-                                
+                                    </Table.Cell>
+                                    <Table.Cell textAlign='right' singleLine> 
+                                        <Button basic color="orange" icon="edit" size='mini' onClick={event => this.handleEditClick (event, food.id) }/>
+                                        <Button basic color="red" icon='delete' size='mini'onClick={event => this.handleDelete (event, food.id)}/>
                                     </Table.Cell>
                                 </Table.Row>
                             </Table.Body>

@@ -78,6 +78,16 @@ class App extends Component {
     console.log(food);    
   }
 
+  /* Delete the entry that the user selected */
+  entryDelete = (id) => {
+    const { food } = this.state; 
+    this.setState(prevState => ({
+      food: {
+        ...food,
+        data: food.data.filter(entry => entry.id !== id)
+      }
+    }))
+  }
 
   render() {
 
@@ -114,7 +124,7 @@ class App extends Component {
             </div>
             <div className="babyOutput flexItem">
               {type === 'Food' ?
-                <BabyFoodOutput food={food} onEdit={this.updateBabyFood} />
+                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.updateBabyFood} />
                 :
                 null
               }
