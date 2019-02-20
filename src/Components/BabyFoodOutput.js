@@ -1,18 +1,29 @@
 import React from 'react';
-import { Table, Input, Button } from 'semantic-ui-react';
+import BabyFoodEditForm from './BabyFoodEditForm'
+import { Table, Button, Modal } from 'semantic-ui-react';
 
 
 
 class BabyFoodOutput extends React.Component {
 
+    state = {
+        openModal: false
+    }
+    
     /* 
     This is the old handle edit that was going directly to the state, now I want to try doing this with a Modal
     handleEdit = (event, key) => {
         this.props.onEdit(event.target.value, key)
     }; */
 
-    handleEditClick = (event , id) => {
-        console.log(id);
+    /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it */
+    handleEditClick = (event , food) => {
+        const { openModal } = this.state;
+        this.setState({
+            openModal: !openModal
+        })
+        debugger
+        return <BabyFoodEditForm food ={ food } trigger = { openModal}  />
     }
 
     handleDelete =( event , id ) => {
@@ -21,6 +32,7 @@ class BabyFoodOutput extends React.Component {
 
     render() {
         const { food } = this.props;
+        const { openModal } = this.state;
 
         return (
             <div style={{ margin: "10px" }}>
@@ -55,15 +67,29 @@ class BabyFoodOutput extends React.Component {
                                         /> */}
                                     </Table.Cell>
                                     <Table.Cell textAlign='right' singleLine> 
-                                        <Button basic color="orange" icon="edit" size='mini' onClick={event => this.handleEditClick (event, food.id) }/>
-                                        <Button basic color="red" icon='delete' size='mini'onClick={event => this.handleDelete (event, food.id)}/>
+                                        <Button
+                                            basic
+                                            color="orange"
+                                            icon="edit"
+                                            size='mini'
+                                            onClick={event => this.handleEditClick(event, food)}
+                                        />
+                                        <Button
+                                            basic
+                                            color="red"
+                                            icon='delete'
+                                            size='mini'
+                                            onClick={event => this.handleDelete(event, food.id)}
+                                        />
                                     </Table.Cell>
                                 </Table.Row>
                             </Table.Body>
                         )
                     })}
                 </Table>
+
             </div>
+            
 
         )
     }
