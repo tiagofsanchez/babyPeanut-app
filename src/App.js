@@ -102,7 +102,7 @@ class App extends Component {
                     null}
 
             </div>
-            <div className="babyInput flexItem">
+            <div className="babyInput ">
               {type === 'Food' ?
                 <BabyFoodForm babyFood={this.babyFood} />
                 :
