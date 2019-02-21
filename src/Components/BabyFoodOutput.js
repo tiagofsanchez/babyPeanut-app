@@ -18,7 +18,7 @@ class BabyFoodOutput extends React.Component {
         this.props.onEdit(event.target.value, key)
     }; */
 
-    /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it */
+    /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
     handleEditClick = (event , item = null ) => {
         const { openModal } = this.state;
         this.setState({
@@ -27,13 +27,14 @@ class BabyFoodOutput extends React.Component {
         }) 
     }
 
+    /* Will close the model by changing the state of the component openModal */
     closeModal = (isClose) => {
         this.setState({
             openModal: isClose
         })
     }
 
-
+    /* Will delete the item that was selected */
     handleDelete =( event , id ) => {
         this.props.entryDelete(id)
     }
@@ -65,7 +66,7 @@ class BabyFoodOutput extends React.Component {
                                 <Table.Row >
                                     <Table.Cell singleLine><Label>{item.datetime}</Label></Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.breast : <p>formula</p>}</Table.Cell>
-                                    <Table.Cell >{item.duration ? item.duration : item.quantity}</Table.Cell>
+                                    <Table.Cell >{item.disabledFormula ? item.duration : item.quantity}</Table.Cell>
                                     <Table.Cell  >
                                         {item.text}
                                         {/* 

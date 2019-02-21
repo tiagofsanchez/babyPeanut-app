@@ -10,6 +10,7 @@ class BabyFoodEditForm extends React.Component {
     render() {
 
         const { editFood , open  } = this.props;
+        
         return (
             <div> 
                 <Modal
@@ -23,7 +24,6 @@ class BabyFoodEditForm extends React.Component {
                 </Modal.Content>
                 </Modal>
             </div>
-
         )
     }
 }

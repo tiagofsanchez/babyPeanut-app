@@ -41,6 +41,24 @@ class BabyFoodForm extends React.Component {
 
     state = initialState;
 
+    componentDidMount =() => {
+        
+        const { editFood } = this.props;
+
+        if (editFood) {
+            this.setState({
+                id: editFood.id,
+                breast: editFood.breast,
+                duration: editFood.duration,
+                quantity: editFood.quantity,
+                datetime: editFood.datetime,
+                text: editFood.text,
+                disabledFormula: editFood.disabledFormula,
+            })
+        }
+        
+    }    
+
     /* This handleChange takes care of all the events, input and textarea selected */
     handleChange = (event, name = null, value = null) => {
         name ? console.log(name) : console.log(event.target.name);
@@ -50,25 +68,39 @@ class BabyFoodForm extends React.Component {
     /* will pass the state of the form to the parent, App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
-        event.preventDefault();
-        const babyFood = {
-            id: shortid.generate(),
-            breast: breast,
-            duration: duration,
-            quantity: quantity,
-            datetime: datetime,
-            text: text,
-            disabledFormula: disabledFormula,
+        const { editFood } = this.props
+
+        if (editFood) { 
+            const editBabyFood = { 
+                id: editFood.id,
+                breast: editFood.breast,
+                duration: editFood.duration,
+                quantity: editFood.quantity,
+                datetime: editFood.datetime,
+                text: editFood.text,
+                disabledFormula: editFood.disabledFormula,
+            } 
+            this.props.onEdit(editBabyFood);
+        } else {
+            const babyFood = {
+                id: shortid.generate(),
+                breast: breast,
+                duration: duration,
+                quantity: quantity,
+                datetime: datetime,
+                text: text,
+                disabledFormula: disabledFormula,
+            }
+            this.props.babyFood(babyFood);
+            this.setState(initialState);
         }
-        console.log(this.state);
-        this.props.babyFood(babyFood);
-        this.setState(initialState);
     }
 
+    /* Will disable the Formula feeding option for the user. It will be possible to enable it as well */
     changeDisable = () => {
         const { disabledFormula } = this.state;
         this.setState({
-            ...this.state,
+            ...this.setState(initialState),
             disabledFormula: !disabledFormula
         })
     }
@@ -128,8 +160,11 @@ class BabyFoodForm extends React.Component {
                                 closable
                                 clearable
                                 animation="slide down"
+                                initialDate={new Date()}
+                                maxDate={new Date()}
                                 marked={new Date()}
                                 markColor="orange"
+                                
                             />
                             <i className="em em-spiral_note_pad"></i>
                             <Form.TextArea
@@ -141,24 +176,26 @@ class BabyFoodForm extends React.Component {
                                 width={16}
                             />
                             <div className='button'>
-                                <Form.Button color='orange' >Save</Form.Button>
-                                <Button.Group color="standard" size="mini" >
-                                    <Button
-                                        content="Breast"
-                                        onClick={this.changeDisable}
-                                        active={disabledFormula}
-                                        disabled={!disabledFormula}
+                                <Form.Button color='orange'>Save</Form.Button>
+                                {editFood ? null :
+                                    <Button.Group color="standard" size="mini" >
+                                        <Button
+                                            content="Breast"
+                                            onClick={this.changeDisable}
+                                            active={disabledFormula}
+                                            disabled={!disabledFormula}
                                         >
-                                    </Button>
-                                    <Button.Or />
-                                    <Button
-                                        content="Formula"
-                                        onClick={this.changeDisable}
-                                        active={!disabledFormula}
-                                        disabled={disabledFormula}
+                                        </Button>
+                                        <Button.Or />
+                                        <Button
+                                            content="Formula"
+                                            onClick={this.changeDisable}
+                                            active={!disabledFormula}
+                                            disabled={disabledFormula}
                                         >
-                                    </Button>
-                                </Button.Group>
+                                        </Button>
+                                    </Button.Group>
+                                }
                             </div>
                         </div>
                     </Form>

@@ -57,18 +57,22 @@ class App extends Component {
     }))
   }
 
-
   /* With this the user can update the notes on table below */
-  updateBabyFood = (text, id) => {
+  updateBabyFood = (editBabyFood) => {
     const { food } = this.state;
     this.setState(prevState => ({
       food: {
        ...food,
        data: food.data.map(item => {
-         if (item.id === id) {
+         if (item.id === editBabyFood.id) {
            return {
-             ...item, 
-             text
+            id: editBabyFood.id,
+            breast: editBabyFood.breast,
+            duration: editBabyFood.duration,
+            quantity: editBabyFood.quantity,
+            datetime: editBabyFood.datetime,
+            text: editBabyFood.text,
+            disabledFormula: editBabyFood.disabledFormula,
            }
          } else {
            return item
@@ -115,7 +119,7 @@ class App extends Component {
             </div>
             <div className="babyInput ">
               {type === 'Food' ?
-                <BabyFoodForm babyFood={this.babyFood} />
+                <BabyFoodForm babyFood={this.babyFood} onEdit={this.updateBabyFood}/>
                 :
                 type === 'Output' ?
                   <BabyOutputForm babyOutput={this.babyOutput}/>
@@ -125,7 +129,7 @@ class App extends Component {
             </div>
             <div className="babyOutput flexItem">
               {type === 'Food' ?
-                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.updateBabyFood} />
+                <BabyFoodOutput food={food} entryDelete={this.entryDelete} />
                 :
                 null
               }
