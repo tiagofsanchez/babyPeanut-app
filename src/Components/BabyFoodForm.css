@@ -8,11 +8,12 @@
     grid-template-rows: 40px 40px auto 75px auto; 
     grid-gap: 10px;
     grid-template-areas: 
+
     " icon1 field1 field2 "
     " icon2 field3 field3"
     " icon3 field4 field4"
     "icon text text"
-    ". button ."
+    ". button selector"
 } 
 
 .em-breast-feeding {
@@ -52,7 +53,11 @@
 
 .button { 
     grid-area: button;
+    display: -webkit-inline-box;
+    -webkit-box-align: baseline;
 }
+
+
 
 /* *********************************
 *         Grid Responsive         *

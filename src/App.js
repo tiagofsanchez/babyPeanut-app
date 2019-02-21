@@ -4,6 +4,7 @@ import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
+import { Checkbox } from 'semantic-ui-react';
 
 
 class App extends Component {

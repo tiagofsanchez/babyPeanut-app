@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Segment } from 'semantic-ui-react';
+import { Form, Segment, Button, ButtonGroup } from 'semantic-ui-react';
 import shortid from 'shortid';
 import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
@@ -34,8 +34,7 @@ const initialState = {
     quantity: '',
     datetime: '',
     text: '',
-    disabled: 'true'
-
+    disabledFormula: 'true'
 };
 
 class BabyFoodForm extends React.Component {
@@ -50,7 +49,7 @@ class BabyFoodForm extends React.Component {
 
     /* will pass the state of the form to the parent, App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
-        const { breast, duration, quantity, datetime, text } = this.state
+        const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
         event.preventDefault();
         const babyFood = {
             id: shortid.generate(),
@@ -59,82 +58,115 @@ class BabyFoodForm extends React.Component {
             quantity: quantity,
             datetime: datetime,
             text: text,
+            disabledFormula: disabledFormula,
         }
         console.log(this.state);
         this.props.babyFood(babyFood);
         this.setState(initialState);
     }
 
+    changeDisable = () => {
+        const { disabledFormula } = this.state;
+        this.setState({
+            ...this.state,
+            disabledFormula: !disabledFormula
+        })
+    }
+
     render() {
 
-        const { breast, text, duration, datetime, quantity , disabled } = this.state;
+        const { breast, text, duration, datetime, quantity, disabledFormula } = this.state;
         const { editFood } = this.props;
 
         return (
-            <Segment basic >
-                <Form onSubmit={this.handleSubmit}>
-                    <div className='field-container0'>
-                        <i className="em em-breast-feeding"></i>
-                        <Form.Dropdown
-                            className="breast-dropdown"
-                            name='breast'
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='breast side...'
-                            selection
-                            options={breastOptions}
-                            value={breast}
-                            disabled={!disabled}
-                        />
-                        <Form.Dropdown
-                            className="duration-dropdown"
-                            name='duration'
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='time of breastfeeding...'
-                            selection
-                            options={timeOptions}
-                            value={duration}
-                            disabled={!disabled}
-                        
-                        />
-                        <i className="em em-baby_bottle"></i>
-                        <Form.Dropdown
-                            className="quantity-dropdown"
-                            name='quantity'
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='quantity given..'
-                            selection
-                            options={quantityOptions}
-                            value={quantity}
-                            disabled={disabled}
-                        />
-                        <i className="em em-calendar"></i>
-                        <DateTimeInput
-                            className="date-time1"
-                            name='datetime'
-                            placeholder='data and time'
-                            value={datetime}
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            iconPosition="left"
-                            closable
-                            clearable
-                            animation="slide down"
-                            marked={new Date()}
-                            markColor="orange"
-                        />
-                        <i className="em em-spiral_note_pad"></i>
-                        <Form.TextArea
-                            className="text"
-                            name='text'
-                            value={text}
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            placeholder='Any notes that you want...'
-                            width={16}
-                        />
-                        <Form.Button className='button' color='orange'>Save</Form.Button>
-                    </div>
-                </Form>
-            </Segment>
+            <div>
 
+                <Segment basic >
+                    <Form onSubmit={this.handleSubmit}>
+                        <div className='field-container0'>
+                            <i className="em em-breast-feeding"></i>
+                            <Form.Dropdown
+                                className="breast-dropdown"
+                                name='breast'
+                                onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                                placeholder='breast side...'
+                                selection
+                                options={breastOptions}
+                                value={breast}
+                                disabled={!disabledFormula}
+                            />
+                            <Form.Dropdown
+                                className="duration-dropdown"
+                                name='duration'
+                                onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                                placeholder='time of breastfeeding...'
+                                selection
+                                options={timeOptions}
+                                value={duration}
+                                disabled={!disabledFormula}
+
+                            />
+                            <i className="em em-baby_bottle"></i>
+                            <Form.Dropdown
+                                className="quantity-dropdown"
+                                name='quantity'
+                                onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                                placeholder='quantity given..'
+                                selection
+                                options={quantityOptions}
+                                value={quantity}
+                                disabled={disabledFormula}
+                            />
+                            <i className="em em-calendar"></i>
+                            <DateTimeInput
+                                className="date-time1"
+                                name='datetime'
+                                placeholder='data and time'
+                                value={datetime}
+                                onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                                iconPosition="left"
+                                closable
+                                clearable
+                                animation="slide down"
+                                marked={new Date()}
+                                markColor="orange"
+                            />
+                            <i className="em em-spiral_note_pad"></i>
+                            <Form.TextArea
+                                className="text"
+                                name='text'
+                                value={text}
+                                onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                                placeholder='Any notes that you want...'
+                                width={16}
+                            />
+                            <div className='button'>
+                                <Form.Button color='orange' size="medium">Save</Form.Button>
+                                <Button.Group color="teal" size="mini" >
+                                    <Button
+                                        content="Breast"
+                                        onClick={this.changeDisable}
+                                        active={disabledFormula}
+                                        disabled={!disabledFormula}
+                                        >
+                                    </Button>
+                                    <Button.Or />
+                                    <Button
+                                        content="Formula"
+                                        onClick={this.changeDisable}
+                                        active={!disabledFormula}
+                                        disabled={disabledFormula}
+                                        >
+                                    </Button>
+                                </Button.Group>
+                            </div>
+                        </div>
+                    </Form>
+                    
+                </Segment>
+                <div>
+                </div>
+            </div>
 
 
         )
