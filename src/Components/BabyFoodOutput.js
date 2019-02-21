@@ -1,6 +1,7 @@
 import React from 'react';
 import BabyFoodEditForm from './BabyFoodEditForm'
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button , Label } from 'semantic-ui-react';
+import './BabyOutputForm.css'
 
 
 
@@ -41,6 +42,7 @@ class BabyFoodOutput extends React.Component {
         const { food } = this.props;
         const { openModal , editFood } = this.state;
 
+
         return (
             <div style={{ margin: "10px" }}>
                 <Table unstackable size="small" striped>
@@ -61,10 +63,10 @@ class BabyFoodOutput extends React.Component {
                         return (
                             <Table.Body key={item.id}>
                                 <Table.Row >
-                                    <Table.Cell singleLine>{item.datetime}</Table.Cell>
-                                    <Table.Cell >{item.breast ? item.breast : <p>formula</p>}</Table.Cell>
+                                    <Table.Cell singleLine><Label>{item.datetime}</Label></Table.Cell>
+                                    <Table.Cell >{item.disabledFormula ? item.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{item.duration ? item.duration : item.quantity}</Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell  >
                                         {item.text}
                                         {/* 
                                         This was here to make the edit happen, but now i will 

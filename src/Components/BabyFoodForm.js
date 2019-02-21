@@ -141,8 +141,8 @@ class BabyFoodForm extends React.Component {
                                 width={16}
                             />
                             <div className='button'>
-                                <Form.Button color='orange' size="medium">Save</Form.Button>
-                                <Button.Group color="teal" size="mini" >
+                                <Form.Button color='orange' >Save</Form.Button>
+                                <Button.Group color="standard" size="mini" >
                                     <Button
                                         content="Breast"
                                         onClick={this.changeDisable}
