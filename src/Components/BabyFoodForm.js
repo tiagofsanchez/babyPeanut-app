@@ -41,10 +41,9 @@ class BabyFoodForm extends React.Component {
 
     state = initialState;
 
+    /* will manage the lifecycle of my component by changing the state if the the user wants to edit something*/
     componentDidMount =() => {
-        
         const { editFood } = this.props;
-
         if (editFood) {
             this.setState({
                 id: editFood.id,
@@ -56,33 +55,23 @@ class BabyFoodForm extends React.Component {
                 disabledFormula: editFood.disabledFormula,
             })
         }
-        
     }    
 
     /* This handleChange takes care of all the events, input and textarea selected */
     handleChange = (event, name = null, value = null) => {
         name ? console.log(name) : console.log(event.target.name);
         this.setState({ [name ? name : event.target.name]: value ? value : event.target.value })
+        console.log(value);
+        
     };
 
     /* will pass the state of the form to the parent, App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
-        const { editFood } = this.props
-
-        if (editFood) { 
-            const editBabyFood = { 
-                id: editFood.id,
-                breast: editFood.breast,
-                duration: editFood.duration,
-                quantity: editFood.quantity,
-                datetime: editFood.datetime,
-                text: editFood.text,
-                disabledFormula: editFood.disabledFormula,
-            } 
-            this.props.onEdit(editBabyFood);
-        } else {
-            const babyFood = {
+        const { editFood , onEdit , babyFood } = this.props
+        
+        if (!editFood) { 
+            const food = {
                 id: shortid.generate(),
                 breast: breast,
                 duration: duration,
@@ -91,8 +80,21 @@ class BabyFoodForm extends React.Component {
                 text: text,
                 disabledFormula: disabledFormula,
             }
-            this.props.babyFood(babyFood);
+            babyFood(food);
             this.setState(initialState);
+            
+          debugger 
+        } else {
+            const editBabyFood = { 
+                id: editFood.id,
+                breast: breast,
+                duration: duration,
+                quantity: quantity,
+                datetime: datetime,
+                text: text,
+                disabledFormula: editFood.disabledFormula,
+            } 
+            onEdit(editBabyFood);            
         }
     }
 

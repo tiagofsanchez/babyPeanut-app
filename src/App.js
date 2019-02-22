@@ -4,7 +4,7 @@ import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
-import { Checkbox } from 'semantic-ui-react';
+
 
 
 class App extends Component {
@@ -19,10 +19,6 @@ class App extends Component {
         title: 'Output',
         data: [],
       },
-      /* sleep: {
-        title: 'Sleep',
-        data: []
-      }, */
       type: 'Food',
     }
 
@@ -57,8 +53,8 @@ class App extends Component {
     }))
   }
 
-  /* With this the user can update the notes on table below */
-  updateBabyFood = (editBabyFood) => {
+  /* Updating the selected item from the Modal via BabyFoodForm */
+  editBabyFood = (editBabyFood) => {
     const { food } = this.state;
     this.setState(prevState => ({
       food: {
@@ -119,7 +115,7 @@ class App extends Component {
             </div>
             <div className="babyInput ">
               {type === 'Food' ?
-                <BabyFoodForm babyFood={this.babyFood} onEdit={this.updateBabyFood}/>
+                <BabyFoodForm babyFood={this.babyFood} onEdit={this.editBabyFood}/>
                 :
                 type === 'Output' ?
                   <BabyOutputForm babyOutput={this.babyOutput}/>
