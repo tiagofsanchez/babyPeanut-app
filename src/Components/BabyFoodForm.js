@@ -69,7 +69,7 @@ class BabyFoodForm extends React.Component {
     It will also enable the edit of a given entry */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
-        const { editFood, onEdit, babyFood } = this.props
+        const { editFood, onEdit, babyFood , onClose } = this.props
       
         if (!editFood) {
             const food = {
@@ -96,6 +96,8 @@ class BabyFoodForm extends React.Component {
                 disabledFormula: editFood.disabledFormula,
             }
             onEdit(editBabyFood);
+            onClose();
+
         }
     }
 

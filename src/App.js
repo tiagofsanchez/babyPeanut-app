@@ -118,14 +118,14 @@ class App extends Component {
                 <BabyFoodForm babyFood={this.babyFood} />
                 :
                 type === 'Output' ?
-                  <BabyOutputForm babyOutput={this.babyOutput} onEdit={this.editBabyFood}/>
+                  <BabyOutputForm babyOutput={this.babyOutput} />
                   :
                   null
               }
             </div>
             <div className="babyOutput flexItem">
               {type === 'Food' ?
-                <BabyFoodOutput food={food} entryDelete={this.entryDelete} />
+                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editBabyFood} />
                 :
                 null
               }

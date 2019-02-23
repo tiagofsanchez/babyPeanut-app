@@ -40,8 +40,9 @@ class BabyFoodOutput extends React.Component {
     }
 
     render() {
-        const { food , onEdit } = this.props;
+        
         const { openModal , editFood } = this.state;
+        const { food , onEdit } = this.props;
 
 
         return (

@@ -20,7 +20,7 @@ class BabyFoodEditForm extends React.Component {
                 >
                 <Modal.Header>Edit your entry below</Modal.Header>
                 <Modal.Content>
-                    <BabyFoodForm editFood={editFood} onEdit={onEdit}/>
+                    <BabyFoodForm editFood={editFood} onEdit={onEdit} onClose={this.close}/>
                 </Modal.Content>
                 </Modal>
             </div>
