@@ -115,10 +115,10 @@ class App extends Component {
             </div>
             <div className="babyInput ">
               {type === 'Food' ?
-                <BabyFoodForm babyFood={this.babyFood} onEdit={this.editBabyFood}/>
+                <BabyFoodForm babyFood={this.babyFood} />
                 :
                 type === 'Output' ?
-                  <BabyOutputForm babyOutput={this.babyOutput}/>
+                  <BabyOutputForm babyOutput={this.babyOutput} onEdit={this.editBabyFood}/>
                   :
                   null
               }

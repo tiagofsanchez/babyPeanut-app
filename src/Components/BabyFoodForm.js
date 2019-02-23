@@ -42,7 +42,7 @@ class BabyFoodForm extends React.Component {
     state = initialState;
 
     /* will manage the lifecycle of my component by changing the state if the the user wants to edit something*/
-    componentDidMount =() => {
+    componentDidMount = () => {
         const { editFood } = this.props;
         if (editFood) {
             this.setState({
@@ -55,22 +55,23 @@ class BabyFoodForm extends React.Component {
                 disabledFormula: editFood.disabledFormula,
             })
         }
-    }    
+    }
 
     /* This handleChange takes care of all the events, input and textarea selected */
     handleChange = (event, name = null, value = null) => {
         name ? console.log(name) : console.log(event.target.name);
         this.setState({ [name ? name : event.target.name]: value ? value : event.target.value })
         console.log(value);
-        
+
     };
 
-    /* will pass the state of the form to the parent, App in a newly created array babyFood an will create an ID for that */
+    /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that 
+    It will also enable the edit of a given entry */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
-        const { editFood , onEdit , babyFood } = this.props
-        
-        if (!editFood) { 
+        const { editFood, onEdit, babyFood } = this.props
+      
+        if (!editFood) {
             const food = {
                 id: shortid.generate(),
                 breast: breast,
@@ -82,10 +83,10 @@ class BabyFoodForm extends React.Component {
             }
             babyFood(food);
             this.setState(initialState);
-            
-          debugger 
+
+
         } else {
-            const editBabyFood = { 
+            const editBabyFood = {
                 id: editFood.id,
                 breast: breast,
                 duration: duration,
@@ -93,8 +94,8 @@ class BabyFoodForm extends React.Component {
                 datetime: datetime,
                 text: text,
                 disabledFormula: editFood.disabledFormula,
-            } 
-            onEdit(editBabyFood);            
+            }
+            onEdit(editBabyFood);
         }
     }
 
@@ -166,7 +167,7 @@ class BabyFoodForm extends React.Component {
                                 maxDate={new Date()}
                                 marked={new Date()}
                                 markColor="orange"
-                                
+
                             />
                             <i className="em em-spiral_note_pad"></i>
                             <Form.TextArea
@@ -201,7 +202,7 @@ class BabyFoodForm extends React.Component {
                             </div>
                         </div>
                     </Form>
-                    
+
                 </Segment>
                 <div>
                 </div>

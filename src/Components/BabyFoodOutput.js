@@ -40,7 +40,7 @@ class BabyFoodOutput extends React.Component {
     }
 
     render() {
-        const { food } = this.props;
+        const { food , onEdit } = this.props;
         const { openModal , editFood } = this.state;
 
 
@@ -99,7 +99,7 @@ class BabyFoodOutput extends React.Component {
                         )
                     })}
                 </Table>
-                <BabyFoodEditForm open={openModal} editFood={editFood} isClose={this.closeModal}/>
+                <BabyFoodEditForm open={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit}/>
             </div>
             
 

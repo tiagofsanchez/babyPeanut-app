@@ -9,7 +9,7 @@ class BabyFoodEditForm extends React.Component {
     
     render() {
 
-        const { editFood , open  } = this.props;
+        const { editFood , open , onEdit } = this.props;
         
         return (
             <div> 
@@ -20,7 +20,7 @@ class BabyFoodEditForm extends React.Component {
                 >
                 <Modal.Header>Edit your entry below</Modal.Header>
                 <Modal.Content>
-                    <BabyFoodForm editFood={editFood}/>
+                    <BabyFoodForm editFood={editFood} onEdit={onEdit}/>
                 </Modal.Content>
                 </Modal>
             </div>
