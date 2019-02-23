@@ -26,7 +26,7 @@ class App extends Component {
     this.changeBabyForm = this.changeBabyForm.bind(this);
   }
 
-  /* Menu changes */
+  /* Handles the different Menu changes depending on user actions */
   changeBabyForm = (menu) => {
     this.setState({
       type: menu

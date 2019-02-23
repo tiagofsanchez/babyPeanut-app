@@ -41,7 +41,8 @@ class BabyFoodForm extends React.Component {
 
     state = initialState;
 
-    /* will manage the lifecycle of my component by changing the state if the the user wants to edit something*/
+    /* will manage the lifecycle of my component by changing the state if the the user wants to edit something
+    QUESTIONS: Can it be a function or does it need to be a method? What is the big difference?*/
     componentDidMount = () => {
         const { editFood } = this.props;
         if (editFood) {
@@ -65,13 +66,11 @@ class BabyFoodForm extends React.Component {
 
     };
 
-    /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that 
-    It will also enable the edit of a given entry */
+    /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
         const { editFood, onEdit, babyFood , onClose } = this.props
       
-        if (!editFood) {
             const food = {
                 id: shortid.generate(),
                 breast: breast,
@@ -84,21 +83,27 @@ class BabyFoodForm extends React.Component {
             babyFood(food);
             this.setState(initialState);
 
+        } 
+    
 
-        } else {
-            const editBabyFood = {
-                id: editFood.id,
-                breast: breast,
-                duration: duration,
-                quantity: quantity,
-                datetime: datetime,
-                text: text,
-                disabledFormula: editFood.disabledFormula,
-            }
-            onEdit(editBabyFood);
-            onClose();
+    /* Edit the entry and update it to the App state while closing the modal form */
+    handleEdit = (event) => { 
+        
+        const { breast , duration , quantity , datetime , text } = this.state;
+        const { editFood , onEdit , onClose } = this.props;
 
+        const editBabyFood = {
+            id: editFood.id,
+            breast: breast,
+            duration: duration,
+            quantity: quantity,
+            datetime: datetime,
+            text: text,
+            disabledFormula: editFood.disabledFormula,
         }
+        onEdit(editBabyFood);
+        onClose();
+
     }
 
     /* Will disable the Formula feeding option for the user. It will be possible to enable it as well */
@@ -119,7 +124,7 @@ class BabyFoodForm extends React.Component {
             <div>
 
                 <Segment basic >
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={!editFood ? this.handleSubmit : this.handleEdit}>
                         <div className='field-container0'>
                             <i className="em em-breast-feeding"></i>
                             <Form.Dropdown
