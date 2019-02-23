@@ -4,6 +4,7 @@ import VerticalMenu from './Components/VerticalMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
+import BabyOututOutput from './Components/BabyOutputOutput';
 
 
 
@@ -79,20 +80,26 @@ class App extends Component {
     console.log(food);    
   }
 
-  /* Delete the entry that the user selected */
-  entryDelete = (id) => {
-    const { food } = this.state; 
+  /* Delete the entry that the user selected form food input as well as from output */
+  EntryDelete = (id) => {
+    const { food , output } = this.state; 
     this.setState(prevState => ({
       food: {
         ...food,
         data: food.data.filter(entry => entry.id !== id)
+      }, 
+      output: { 
+        ...output,
+        data: output.data.filter(entry => entry.id !== id)
       }
     }))
   }
 
+
+
   render() {
 
-    const { type, food } = this.state;
+    const { type, food , output } = this.state;
 
     return (
       <div className="flexContainer flexColumn fullHeight ">
@@ -111,7 +118,6 @@ class App extends Component {
                   <h3> Your <span className="highlight">Baby</span>  <i className="em em-hankey"></i> </h3>
                   :
                     null}
-
             </div>
             <div className="babyInput ">
               {type === 'Food' ?
@@ -125,9 +131,9 @@ class App extends Component {
             </div>
             <div className="babyOutput flexItem">
               {type === 'Food' ?
-                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editBabyFood} />
+                <BabyFoodOutput food={food} entryDelete={this.EntryDelete} onEdit={this.editBabyFood} />
                 :
-                null
+                <BabyOututOutput output={output} entryDelete={this.EntryDelete}/>
               }
             </div>
           </main>

@@ -61,12 +61,19 @@ class BabyOutputForm extends React.Component {
                             value={output}
                         />
                         <DateTimeInput
-                            className='date-time'
-                            name='datetime'
-                            placeholder='date and time '
-                            value={datetime}
-                            onChange={(event, { name, value }) => this.handleChange(event, name, value)}
-                            iconPosition="left"
+                             className="date-time"
+                             name='datetime'
+                             placeholder='data and time'
+                             value={datetime}
+                             onChange={(event, { name, value }) => this.handleChange(event, name, value)}
+                             iconPosition="left"
+                             closable
+                             clearable
+                             animation="slide down"
+                             initialDate={new Date()}
+                             maxDate={new Date()}
+                             marked={new Date()}
+                             markColor="orange"
                         />
                         <i className="em em-spiral_note_pad"></i>
                         <Form.TextArea

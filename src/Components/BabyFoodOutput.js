@@ -1,7 +1,8 @@
 import React from 'react';
-import BabyFoodEditForm from './BabyFoodEditForm'
+import BabyFoodEditForm from './EditBabyInput'
 import { Table, Button , Label } from 'semantic-ui-react';
 import './BabyOutputForm.css'
+import EditBabyInput from './EditBabyInput';
 
 
 
@@ -58,9 +59,7 @@ class BabyFoodOutput extends React.Component {
                         </Table.Row>
                     </Table.Header>
 
-                    {/* This will need to be here so that the header of the table doesn't repeact itself 
-                    Alterar a inner variable food para foodEntry
-                    */}
+                    {/* This will need to be here so that the header of the table doesn't repeat itself */}
                     {food.data && food.data.map(item => {
                         return (
                             <Table.Body key={item.id}>
@@ -100,7 +99,7 @@ class BabyFoodOutput extends React.Component {
                         )
                     })}
                 </Table>
-                <BabyFoodEditForm open={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit}/>
+                <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit}/>
             </div>
             
 
