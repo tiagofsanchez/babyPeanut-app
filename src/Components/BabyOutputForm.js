@@ -21,6 +21,18 @@ class BabyOutputForm extends React.Component {
 
     state = initialstate;
 
+    componentDidMount =() => {
+        const { editOuput } = this.props; 
+        if (editOuput) { 
+            this.setState({
+                id: editOuput.id,
+                output: editOuput.output,
+                datetime: editOuput.datetime,
+                text: editOuput.text,
+            })
+        }
+     }
+
     /* Handling all changes of this component and saves it on the component state */
     handleChange = (event, name, value) => {
         this.setState({
@@ -31,7 +43,6 @@ class BabyOutputForm extends React.Component {
     /* Here we will pass the state of this component to the parent App in a new array babyOutput to be added to App state */
     handleSubmit = (event) => {
         const { output, datetime, text } = this.state;
-        event.preventDefault();
         const babyOutput = {
             id: shortid.generate(),
             output: output,
@@ -42,13 +53,30 @@ class BabyOutputForm extends React.Component {
         this.setState(initialstate);
     }
 
+    handleEdit = (event) => { 
+         
+        const { output, datetime, text } = this.state;
+        const { editOuput , onEdit , onClose } = this.props ; 
+
+        const newBabyOutput = { 
+            id: editOuput.id, 
+            output: output, 
+            datetime: datetime, 
+            text: text, 
+        }
+        onEdit(newBabyOutput);
+        onClose();
+
+    }
+
     render() {
 
         const { output, datetime, text } = this.state;
+        const { editOuput } = this.props
 
         return (
             <Segment basic>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={!editOuput ? this.handleSubmit : this.handleEdit }>
                     <div className='field-container1'>
                         <i className="em em-hankey"></i>
                         <Form.Dropdown

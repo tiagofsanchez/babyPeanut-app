@@ -54,34 +54,50 @@ class App extends Component {
     }))
   }
 
-  /* Updating the selected item from the Modal via BabyFoodForm */
-  editBabyFood = (editBabyFood) => {
-    const { food } = this.state;
+  /* Updating the selected item from the Modal via BabyFoodForm and BabyOutputForm */
+  editEntry = (edit) => {
+    const { food, output } = this.state;
     this.setState(prevState => ({
       food: {
-       ...food,
-       data: food.data.map(item => {
-         if (item.id === editBabyFood.id) {
-           return {
-            id: editBabyFood.id,
-            breast: editBabyFood.breast,
-            duration: editBabyFood.duration,
-            quantity: editBabyFood.quantity,
-            datetime: editBabyFood.datetime,
-            text: editBabyFood.text,
-            disabledFormula: editBabyFood.disabledFormula,
-           }
-         } else {
-           return item
-         }
-       })  
+        ...food,
+        data: food.data.map(item => {
+          if (item.id === edit.id) {
+            return {
+              id: edit.id,
+              breast: edit.breast,
+              duration: edit.duration,
+              quantity: edit.quantity,
+              datetime: edit.datetime,
+              text: edit.text,
+              disabledFormula: edit.disabledFormula,
+            }
+          } else {
+            return item
+          }
+        })
       }
     }))
-    console.log(food);    
+    this.setState(prevState => ({
+      output: {
+        ...output,
+        data: output.data.map(item => {
+          if (edit.id === item.id) {
+            return {
+              id: edit.id,
+              output: edit.output,
+              datetime: edit.datetime,
+              text: edit.text
+            }
+          } else {
+            return item
+          }
+        })
+      }
+    }))
   }
 
   /* Delete the entry that the user selected form food input as well as from output */
-  EntryDelete = (id) => {
+  entryDelete = (id) => {
     const { food , output } = this.state; 
     this.setState(prevState => ({
       food: {
@@ -131,9 +147,9 @@ class App extends Component {
             </div>
             <div className="babyOutput flexItem">
               {type === 'Food' ?
-                <BabyFoodOutput food={food} entryDelete={this.EntryDelete} onEdit={this.editBabyFood} />
+                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editEntry} />
                 :
-                <BabyOututOutput output={output} entryDelete={this.EntryDelete}/>
+                <BabyOututOutput output={output} entryDelete={this.entryDelete} onEdit={this.editEntry}/>
               }
             </div>
           </main>

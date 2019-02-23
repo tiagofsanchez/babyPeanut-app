@@ -69,7 +69,7 @@ class BabyFoodForm extends React.Component {
     /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
-        const { editFood, onEdit, babyFood , onClose } = this.props
+        const { babyFood } = this.props
       
             const food = {
                 id: shortid.generate(),

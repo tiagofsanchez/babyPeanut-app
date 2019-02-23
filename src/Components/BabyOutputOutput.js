@@ -36,7 +36,7 @@ class BabyOututOutput extends React.Component {
     render() {
 
         const { editOuput , openModal } = this.state;
-        const { output } = this.props;
+        const { output , onEdit } = this.props;
         
         return (
             <div style={{ margin: "10px" }}>
@@ -78,7 +78,7 @@ class BabyOututOutput extends React.Component {
                     })
                     }
                 </Table>
-                <EditBabyInput openModal={openModal} isClose={this.closeModal} editOuput={editOuput}/>
+                <EditBabyInput openModal={openModal} isClose={this.closeModal} editOuput={editOuput} onEdit={onEdit} onClose={this.closeModal}/>
             </div>
         )
     }
