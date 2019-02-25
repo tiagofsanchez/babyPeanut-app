@@ -13,6 +13,7 @@ const Wrapper = styled.section`
   background: papayawhip;
 `;
 
+
 class App extends Component {
   constructor(props) {
     super(props);
