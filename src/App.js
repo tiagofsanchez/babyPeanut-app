@@ -8,9 +8,35 @@ import BabyOututOutput from './Components/BabyOutputOutput';
 import styled from 'styled-components';
 
 
-const Wrapper = styled.section`
-  padding: 4em;
+const AppFrame = styled.div`
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-areas: 
+    "nav nav"
+    "menu content"
+    "footer footer"
+`;
+
+const Nav = styled.div`
+  grid-area: nav;
   background: papayawhip;
+`;
+
+const Menu = styled.div`
+  grid-area: menu;
+  background: pink;
+  height: 100vh;
+`;
+
+const AppContent = styled.div`
+grid-area: content;
+`;
+
+const Footer = styled.div`
+  grid-area: footer; 
+  background: papayawhip;
+  boder: 10px solid red;
 `;
 
 
@@ -126,9 +152,16 @@ class App extends Component {
     return (
       <div>
         { type === 'Dashboard' ?  
-        <Wrapper>
-
-        </Wrapper>
+          <AppFrame>
+            <Nav />
+            <Menu>
+              <VerticalMenu menu={this.changeComponents} />
+            </Menu>
+            <AppContent> 
+              
+            </AppContent>
+            <Footer/>
+          </AppFrame>
         :
         <div className="flexContainer flexColumn fullHeight ">
           <nav className="flexContainer blueBackground">
