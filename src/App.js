@@ -5,8 +5,13 @@ import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
 import BabyOututOutput from './Components/BabyOutputOutput';
+import styled from 'styled-components';
 
 
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -24,11 +29,11 @@ class App extends Component {
     }
 
     this.babyFood = this.babyFood.bind(this);
-    this.changeBabyForm = this.changeBabyForm.bind(this);
+    this.changeComponents = this.changeComponents.bind(this);
   }
 
   /* Handles the different Menu changes depending on user actions */
-  changeBabyForm = (menu) => {
+  changeComponents = (menu) => {
     this.setState({
       type: menu
     })
@@ -46,8 +51,8 @@ class App extends Component {
 
   /* Receives information from BabyOutputForm and saves it into the App state */
   babyOutput = (babyOutput) => {
-    this.setState((prevState)=> ({
-      output : {
+    this.setState((prevState) => ({
+      output: {
         ...this.state.output,
         data: [babyOutput, ...this.state.output.data]
       }
@@ -98,13 +103,13 @@ class App extends Component {
 
   /* Delete the entry that the user selected form food input as well as from output */
   entryDelete = (id) => {
-    const { food , output } = this.state; 
+    const { food, output } = this.state;
     this.setState(prevState => ({
       food: {
         ...food,
         data: food.data.filter(entry => entry.id !== id)
-      }, 
-      output: { 
+      },
+      output: {
         ...output,
         data: output.data.filter(entry => entry.id !== id)
       }
@@ -115,53 +120,65 @@ class App extends Component {
 
   render() {
 
-    const { type, food , output } = this.state;
+    const { type, food, output } = this.state;
 
     return (
-      <div className="flexContainer flexColumn fullHeight ">
-        <nav className="flexContainer blueBackground">
-          <ul className="nav flexItem flexStart">
-            <li><i className="em em-baby"></i>babyPeanut <i className="em em-peanuts"></i> app</li>
-          </ul>
-        </nav>
-        <div className="flexContainer flexItem">
-          <main className="flexItem main flexContainer flexColumn ">
-            <div className="menuTitle" >
-              {type === 'Food' ?
-                <h3> <span className="highlight"> Food </span> for your <i className="em em-baby"></i> </h3>
-                :
-                type === 'Output' ?
-                  <h3> Your <span className="highlight">Baby</span>  <i className="em em-hankey"></i> </h3>
+      <div>
+        { type === 'Dashboard' ?  
+        <Wrapper>
+
+        </Wrapper>
+        :
+        <div className="flexContainer flexColumn fullHeight ">
+          <nav className="flexContainer blueBackground">
+            <ul className="nav flexItem flexStart">
+              <li><i className="em em-baby"></i>babyPeanut <i className="em em-peanuts"></i> app</li>
+            </ul>
+          </nav>
+          <div className="flexContainer flexItem">
+            <main className="flexItem main flexContainer flexColumn ">
+              <div className="menuTitle" >
+                {type === 'Food' ?
+                  <h3> <span className="highlight"> Food </span> for your <i className="em em-baby"></i> </h3>
                   :
+                  type === 'Output' ?
+                    <h3> Your <span className="highlight">Baby</span>  <i className="em em-hankey"></i> </h3>
+                    :
                     null}
-            </div>
-            <div className="babyInput ">
-              {type === 'Food' ?
-                <BabyFoodForm babyFood={this.babyFood} />
-                :
-                type === 'Output' ?
-                  <BabyOutputForm babyOutput={this.babyOutput} />
+              </div>
+              <div className="babyInput ">
+                {type === 'Food' ?
+                  <BabyFoodForm babyFood={this.babyFood} />
                   :
-                  null
-              }
-            </div>
-            <div className="babyOutput flexItem">
-              {type === 'Food' ?
-                <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editEntry} />
-                :
-                <BabyOututOutput output={output} entryDelete={this.entryDelete} onEdit={this.editEntry}/>
-              }
-            </div>
-          </main>
-          <aside className="sidebar sidebarLeft">
-            <h2 className='menu'><i className="em em-paperclip"></i> menu</h2>
-            <VerticalMenu menu={this.changeBabyForm} />
-          </aside>
+                  type === 'Output' ?
+                    <BabyOutputForm babyOutput={this.babyOutput} />
+                    :
+                    null
+                }
+              </div>
+              <div className="babyOutput flexItem">
+                {type === 'Food' ?
+                  <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editEntry} />
+                  :
+                  <BabyOututOutput output={output} entryDelete={this.entryDelete} onEdit={this.editEntry} />
+                }
+              </div>
+            </main>
+            <aside className="sidebar sidebarLeft">
+              <h2 className='menu'><i className="em em-paperclip"></i> menu</h2>
+              <VerticalMenu menu={this.changeComponents} />
+            </aside>
+          </div>
+          <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>
         </div>
-        <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>
-      </div >
+        }
+      </div>
     );
+
   }
 }
+
+
+
 
 export default App;

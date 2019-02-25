@@ -30,7 +30,11 @@ export default class VerticalMenu extends Component {
                       name='Output'
                       active={activeItem === 'Output'}
                       onClick={this.handleItemClick}
-                     
+                  />
+                  <Menu.Item
+                      name='Dashboard'
+                      active={activeItem === 'Dashboard'}
+                      onClick={this.handleItemClick}
                   />
               </Menu>
           
