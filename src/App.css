@@ -9,6 +9,7 @@ body {
   font-size: 1em;
   line-height: 1.428em;
   color: #1e1e1e;   
+  
 }
 
 
@@ -126,9 +127,6 @@ body {
   flex-basis: 150px;
   padding: 10px;
   background-color: rgb(192, 222, 237);
-}
-.menu {
-  color: #f2711c; 
 }
 
 .sidebarLeft{

@@ -1,7 +1,7 @@
 import React from 'react';
 import './BabyOutputForm.css';
 import shortid from 'shortid';
-import { Segment, Form, Label, Icon } from 'semantic-ui-react';
+import { Segment, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 
@@ -21,7 +21,7 @@ class BabyOutputForm extends React.Component {
 
     state = initialstate;
 
-    componentDidMount =() => {
+    componentDidMount = () => {
         const { editOuput } = this.props; 
         if (editOuput) { 
             this.setState({
