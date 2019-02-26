@@ -5,12 +5,15 @@ import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
 import BabyOututOutput from './Components/BabyOutputOutput';
-import Nav from './Components/Nav'
-import Footer from './Components/Footer'
+import Dashboard from './Components/Dashboard';
+import Nav from './Components/Nav';
+import Footer from './Components/Footer';
 
 import styled from 'styled-components';
 
-
+/* ****************** */
+/* Styled Components */
+/* ****************** */
 const AppFrame = styled.div`
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -41,7 +44,9 @@ const FooterBar = styled.div`
   grid-area: footer; 
 `;
 
-
+/* ****************** */
+/*     Component      */
+/* ****************** */
 class App extends Component {
   constructor(props) {
     super(props);
@@ -161,6 +166,7 @@ class App extends Component {
               <SidebarMenu menu={this.changeComponents} />
             </Menu>
             <AppContent>
+              <Dashboard />
             </AppContent>
             <FooterBar>
               <Footer />
