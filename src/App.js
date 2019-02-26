@@ -12,6 +12,7 @@ const AppFrame = styled.div`
   display: grid;
   grid-template-columns: 150px 1fr;
   grid-template-rows: 50px 1fr 50px;
+  min-height: 100vh;
   grid-template-areas: 
     "nav nav"
     "menu content"
@@ -26,17 +27,18 @@ const Nav = styled.div`
 const Menu = styled.div`
   grid-area: menu;
   background: pink;
-  height: 100vh;
+  height: 100%;
+  padding: 10px;
 `;
 
 const AppContent = styled.div`
-grid-area: content;
+  grid-area: content;
+
 `;
 
 const Footer = styled.div`
   grid-area: footer; 
   background: papayawhip;
-  boder: 10px solid red;
 `;
 
 
@@ -144,23 +146,21 @@ class App extends Component {
   }
 
 
-
   render() {
 
     const { type, food, output } = this.state;
 
     return (
       <div>
-        { type === 'Dashboard' ?  
+        {type === 'Dashboard' ?
           <AppFrame>
             <Nav />
             <Menu>
               <VerticalMenu menu={this.changeComponents} />
             </Menu>
-            <AppContent> 
-              
+            <AppContent>
             </AppContent>
-            <Footer/>
+            <Footer />
           </AppFrame>
         :
         <div className="flexContainer flexColumn fullHeight ">
@@ -199,7 +199,7 @@ class App extends Component {
               </div>
             </main>
             <aside className="sidebar sidebarLeft">
-              <h2 className='menu'><i className="em em-paperclip"></i> menu</h2>
+              
               <VerticalMenu menu={this.changeComponents} />
             </aside>
           </div>
