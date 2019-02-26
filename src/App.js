@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import SidebarMenu from './Components/SidebarMenu';
-import BabyFoodForm from './Components/BabyFoodForm';
-import BabyFoodOutput from './Components/BabyFoodOutput';
-import BabyOutputForm from './Components/BabyOutputForm'
-import BabyOututOutput from './Components/BabyOutputOutput';
+import BabyFood from './Components/BabyFood';
 import Dashboard from './Components/Dashboard';
+import BabyOutput from './Components/BabyOutput'
 import Nav from './Components/Nav';
 import Footer from './Components/Footer';
-
 import styled from 'styled-components';
 
 /* ****************** */
@@ -157,7 +154,7 @@ class App extends Component {
 
     return (
       <div>
-        {type === 'Dashboard' ?
+        
           <AppFrame>
             <NavBar>
               <Nav/> 
@@ -166,60 +163,26 @@ class App extends Component {
               <SidebarMenu menu={this.changeComponents} />
             </Menu>
             <AppContent>
-              <Dashboard />
+            {type === 'Dashboard' ? 
+              <Dashboard /> 
+              :
+              type === 'Food' ?
+              <BabyFood babyFood={this.babyFood} food={food} entryDelete={this.entryDelete} onEdit={this.editEntry}/>
+              :
+              type === 'Output' ? 
+              <BabyOutput babyOutput={this.babyOutput} output={output} entryDelete={this.entryDelete} onEdit={this.editEntry}/>
+              :
+              null}  
             </AppContent>
             <FooterBar>
               <Footer />
             </FooterBar>
           </AppFrame>
-        :
-        <div className="flexContainer flexColumn fullHeight ">
-          <nav className="flexContainer blueBackground">
-            <ul className="nav flexItem flexStart">
-              <li><i className="em em-baby"></i>babyPeanut <i className="em em-peanuts"></i> app</li>
-            </ul>
-          </nav>
-          <div className="flexContainer flexItem">
-            <main className="flexItem main flexContainer flexColumn ">
-              <div className="menuTitle" >
-                {type === 'Food' ?
-                  <h3> <span className="highlight"> Food </span> for your <i className="em em-baby"></i> </h3>
-                  :
-                  type === 'Output' ?
-                    <h3> Your <span className="highlight">Baby</span>  <i className="em em-hankey"></i> </h3>
-                    :
-                    null}
-              </div>
-              <div className="babyInput ">
-                {type === 'Food' ?
-                  <BabyFoodForm babyFood={this.babyFood} />
-                  :
-                  type === 'Output' ?
-                    <BabyOutputForm babyOutput={this.babyOutput} />
-                    :
-                    null
-                }
-              </div>
-              <div className="babyOutput flexItem">
-                {type === 'Food' ?
-                  <BabyFoodOutput food={food} entryDelete={this.entryDelete} onEdit={this.editEntry} />
-                  :
-                  <BabyOututOutput output={output} entryDelete={this.entryDelete} onEdit={this.editEntry} />
-                }
-              </div>
-            </main>
-            <aside className="sidebar sidebarLeft">
-              <SidebarMenu menu={this.changeComponents}/>
-            </aside>
-          </div>
-          <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>
-        </div>
-        }
+
       </div>
     );
 
   }
 }
-
 
 export default App;
