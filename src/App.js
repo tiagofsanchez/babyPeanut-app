@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-import VerticalMenu from './Components/VerticalMenu';
+import SidebarMenu from './Components/SidebarMenu';
 import BabyFoodForm from './Components/BabyFoodForm';
 import BabyFoodOutput from './Components/BabyFoodOutput';
 import BabyOutputForm from './Components/BabyOutputForm'
 import BabyOututOutput from './Components/BabyOutputOutput';
+import Nav from './Components/Nav'
+import Footer from './Components/Footer'
+
 import styled from 'styled-components';
 
 
 const AppFrame = styled.div`
   display: grid;
   grid-template-columns: 150px 1fr;
-  grid-template-rows: 50px 1fr 50px;
+  grid-template-rows: 50px 1fr 30px;
   min-height: 100vh;
   grid-template-areas: 
     "nav nav"
@@ -19,26 +22,23 @@ const AppFrame = styled.div`
     "footer footer"
 `;
 
-const Nav = styled.div`
+const NavBar = styled.div`
   grid-area: nav;
-  background: papayawhip;
 `;
 
 const Menu = styled.div`
   grid-area: menu;
-  background: pink;
+  background-color: rgb(192, 222, 237);
   height: 100%;
   padding: 10px;
 `;
 
 const AppContent = styled.div`
   grid-area: content;
-
 `;
 
-const Footer = styled.div`
+const FooterBar = styled.div`
   grid-area: footer; 
-  background: papayawhip;
 `;
 
 
@@ -154,13 +154,17 @@ class App extends Component {
       <div>
         {type === 'Dashboard' ?
           <AppFrame>
-            <Nav />
+            <NavBar>
+              <Nav/> 
+            </NavBar> 
             <Menu>
-              <VerticalMenu menu={this.changeComponents} />
+              <SidebarMenu menu={this.changeComponents} />
             </Menu>
             <AppContent>
             </AppContent>
-            <Footer />
+            <FooterBar>
+              <Footer />
+            </FooterBar>
           </AppFrame>
         :
         <div className="flexContainer flexColumn fullHeight ">
@@ -199,8 +203,7 @@ class App extends Component {
               </div>
             </main>
             <aside className="sidebar sidebarLeft">
-              
-              <VerticalMenu menu={this.changeComponents} />
+              <SidebarMenu menu={this.changeComponents}/>
             </aside>
           </div>
           <footer className="flexContainer flexCenter blueBackground whiteText height50 footer">&copy; babyPeanut </footer>

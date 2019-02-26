@@ -21,7 +21,7 @@ class BabyOutputForm extends React.Component {
 
     state = initialstate;
 
-    componentDidMount =() => {
+    componentDidMount = () => {
         const { editOuput } = this.props; 
         if (editOuput) { 
             this.setState({
