@@ -12,14 +12,13 @@ color: #f2711c;
 font-size: 1.5em; 
 `;
 
-
-
 /* ****************** */
 /*     Component      */
 /* ****************** */
 export default class SidebarMenu extends Component {
     state = {
-        activeItem: 'Food'
+        activeItem: 'Food',
+        visible: false
     }
 
     /* event handler that changes the state of this componemt by "checking in" the state of the parent component */
@@ -29,29 +28,32 @@ export default class SidebarMenu extends Component {
     }
 
     render() {
-        const { activeItem } = this.state;
+
+        const { activeItem, visible } = this.state;
 
         return (
-            <div>
-                <H2 className='menu'><i className="em em-paperclip"></i> Menu</H2>
-                <Menu vertical secondary fluid>
-                    <Menu.Item
-                        name='Food'
-                        active={activeItem === 'Food'}
-                        onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-                        name='Output'
-                        active={activeItem === 'Output'}
-                        onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-                        name='Dashboard'
-                        active={activeItem === 'Dashboard'}
-                        onClick={this.handleItemClick}
-                    />
-                </Menu>
-            </div>
+            
+                <div>
+                    <H2 className='menu'><i className="em em-paperclip"></i> Menu</H2>
+                    <Menu vertical secondary fluid>
+                        <Menu.Item
+                            name='Food'
+                            active={activeItem === 'Food'}
+                            onClick={this.handleItemClick}
+                        />
+                        <Menu.Item
+                            name='Output'
+                            active={activeItem === 'Output'}
+                            onClick={this.handleItemClick}
+                        />
+                        <Menu.Item
+                            name='Dashboard'
+                            active={activeItem === 'Dashboard'}
+                            onClick={this.handleItemClick}
+                        />
+                    </Menu>
+                </div>
+            
 
         )
     }

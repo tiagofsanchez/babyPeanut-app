@@ -4,9 +4,6 @@ import shortid from 'shortid';
 import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
-
-
-
 const timeOptions = [
     { key: '5', text: '5 min', value: '5 min' },
     { key: '10', text: '10 min', value: '10 min' },
@@ -19,7 +16,6 @@ const breastOptions = [
     { key: 'left', text: 'left breast', value: 'left breast' },
     { key: 'both', text: 'both breasts', value: 'both breasts' },
 ];
-
 
 const quantityOptions = [
     { key: '5', text: '5 ml', value: '5 ml' },
@@ -70,27 +66,27 @@ class BabyFoodForm extends React.Component {
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
         const { babyFood } = this.props
-      
-            const food = {
-                id: shortid.generate(),
-                breast: breast,
-                duration: duration,
-                quantity: quantity,
-                datetime: datetime,
-                text: text,
-                disabledFormula: disabledFormula,
-            }
-            babyFood(food);
-            this.setState(initialState);
 
-        } 
-    
+        const food = {
+            id: shortid.generate(),
+            breast: breast,
+            duration: duration,
+            quantity: quantity,
+            datetime: datetime,
+            text: text,
+            disabledFormula: disabledFormula,
+        }
+        babyFood(food);
+        this.setState(initialState);
+
+    }
+
 
     /* Edit the entry and update it to the App state while closing the modal form */
-    handleEdit = (event) => { 
-        
-        const { breast , duration , quantity , datetime , text } = this.state;
-        const { editFood , onEdit , onClose } = this.props;
+    handleEdit = (event) => {
+
+        const { breast, duration, quantity, datetime, text } = this.state;
+        const { editFood, onEdit, onClose } = this.props;
 
         const editBabyFood = {
             id: editFood.id,
