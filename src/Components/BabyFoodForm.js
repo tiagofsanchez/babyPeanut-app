@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Segment, Button, ButtonGroup } from 'semantic-ui-react';
+import { Form, Segment, Button } from 'semantic-ui-react';
+import * as moment from 'moment';
 import shortid from 'shortid';
 import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
@@ -56,9 +57,8 @@ class BabyFoodForm extends React.Component {
 
     /* This handleChange takes care of all the events, input and textarea selected */
     handleChange = (event, name = null, value = null) => {
-        name ? console.log(name) : console.log(event.target.name);
+       /*  name ? console.log(name) : console.log(event.target.name); */
         this.setState({ [name ? name : event.target.name]: value ? value : event.target.value })
-        console.log(value);
 
     };
 
@@ -76,9 +76,13 @@ class BabyFoodForm extends React.Component {
             text: text,
             disabledFormula: disabledFormula,
         }
+
+       
+       
         babyFood(food);
         this.setState(initialState);
-
+        
+       
     }
 
 

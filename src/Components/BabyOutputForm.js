@@ -5,6 +5,7 @@ import { Segment, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 
+
 const initialstate = {
     output: '',
     datetime: '',
@@ -38,7 +39,7 @@ class BabyOutputForm extends React.Component {
         this.setState({
             [name ? name : event.target.name]: value ? value : event.target.value
         })
-        debugger
+        
     }
 
     /* Here we will pass the state of this component to the parent App in a new array babyOutput to be added to App state */
@@ -52,6 +53,7 @@ class BabyOutputForm extends React.Component {
         }
         this.props.babyOutput(babyOutput);
         this.setState(initialstate);
+        
     }
 
     handleEdit = (event) => { 
