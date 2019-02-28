@@ -1,7 +1,7 @@
 import React from 'react';
-import BabyFoodEditForm from './EditBabyInput'
 import { Table, Button , Label } from 'semantic-ui-react';
 import './BabyOutputForm.css'
+import * as moment from 'moment';
 import EditBabyInput from './EditBabyInput';
 
 
@@ -13,11 +13,6 @@ class BabyFoodOutput extends React.Component {
         editFood: ''
     }
     
-    /* 
-    This is the old handle edit that was going directly to the state, now I want to try doing this with a Modal
-    handleEdit = (event, key) => {
-        this.props.onEdit(event.target.value, key)
-    }; */
 
     /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
     handleEditClick = (event , item = null ) => {
@@ -45,7 +40,6 @@ class BabyFoodOutput extends React.Component {
         const { openModal , editFood } = this.state;
         const { food , onEdit } = this.props;
 
-
         return (
             <div style={{ margin: "10px" }}>
                 <Table unstackable size="small" striped>
@@ -61,23 +55,14 @@ class BabyFoodOutput extends React.Component {
 
                     {/* This will need to be here so that the header of the table doesn't repeat itself */}
                     {food.data && food.data.map(item => {
+                        const newDate = item.datetime.substring(6, 10) +-+ item.datetime.substring(3, 5) +-+ item.datetime.substring(0, 2) +" "+ item.datetime.substring(11, 16);
                         return (
                             <Table.Body key={item.id}>
                                 <Table.Row >
-                                    <Table.Cell singleLine><Label>{item.datetime}</Label></Table.Cell>
+                                    <Table.Cell singleLine><Label>{moment(newDate).format('Do, MMM, hA')}</Label></Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.duration : item.quantity}</Table.Cell>
-                                    <Table.Cell  >
-                                        {item.text}
-                                        {/* 
-                                        This was here to make the edit happen, but now i will 
-                                        <Input
-                                            value={item.text}
-                                            onChange={(event) => this.handleEdit(event, item.id)}
-                                            transparent
-                                            fluid
-                                        /> */}
-                                    </Table.Cell>
+                                    <Table.Cell >{item.text}</Table.Cell>
                                     <Table.Cell textAlign='right' singleLine> 
                                         <Button
                                             basic

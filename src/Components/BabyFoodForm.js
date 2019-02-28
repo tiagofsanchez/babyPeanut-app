@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Segment, Button } from 'semantic-ui-react';
-import * as moment from 'moment';
 import shortid from 'shortid';
 import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
@@ -31,7 +30,7 @@ const initialState = {
     quantity: '',
     datetime: '',
     text: '',
-    disabledFormula: 'true'
+    disabledFormula: true
 };
 
 class BabyFoodForm extends React.Component {
@@ -76,14 +75,6 @@ class BabyFoodForm extends React.Component {
             text: text,
             disabledFormula: disabledFormula,
         }
-
-        console.log(datetime.substring(0, 10));
-        console.log(datetime.substring(0, 2));    
-        console.log(datetime.substring(3,5));
-        console.log(datetime.substring(6, 10));
-        const newDateTime = `${datetime.substring(6, 10)}-${datetime.substring(3,5)}-${datetime.substring(0, 2)}` 
-        console.log(moment(newDateTime).isValid());
-        
 
         babyFood(food);
         this.setState(initialState);
@@ -171,7 +162,6 @@ class BabyFoodForm extends React.Component {
                                 name='datetime'
                                 placeholder='data and time'
                                 value={datetime}
-                                dateFormat={moment().format('YYYY MM DD')}
                                 onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                                 iconPosition="left"
                                 closable
@@ -195,7 +185,7 @@ class BabyFoodForm extends React.Component {
                             <div className='button'>
                                 <Form.Button color='orange'>Save</Form.Button>
                                 {editFood ? null :
-                                    <Button.Group color="standard" size="mini" >
+                                    <Button.Group size="mini" >
                                         <Button
                                             content="Breast"
                                             onClick={this.changeDisable}

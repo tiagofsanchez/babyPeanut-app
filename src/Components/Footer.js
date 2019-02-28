@@ -25,7 +25,7 @@ class Footer extends React.Component {
         return (
             <Div>
                 <P>
-                &copy; babyPeanut, made with <i class="em em-heart"></i> by TFS!
+                &copy; babyPeanut, made with <i className="em em-heart"></i> by TFS!
                 </P>
             </Div>
         )

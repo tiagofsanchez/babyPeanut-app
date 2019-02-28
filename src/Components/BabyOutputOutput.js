@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { Table , Label , Button } from 'semantic-ui-react';
 import './EditBabyInput';
+import * as moment from 'moment';
 import EditBabyInput from './EditBabyInput';
 
 class BabyOututOutput extends React.Component {
@@ -50,10 +51,11 @@ class BabyOututOutput extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     {output.data && output.data.map(item => {
+                        const newDate = item.datetime.substring(6, 10) +-+ item.datetime.substring(3, 5) +-+ item.datetime.substring(0, 2) +" "+ item.datetime.substring(11, 16);
                         return (
                             <Table.Body key={item.id}>
                                 <Table.Row>
-                                    <Table.Cell><Label> {item.datetime} </Label></Table.Cell>
+                                    <Table.Cell><Label> {moment(newDate).format('Do, MMM, hA')}</Label></Table.Cell>
                                     <Table.Cell>{item.output}</Table.Cell>
                                     <Table.Cell>{item.text}</Table.Cell>
                                     <Table.Cell textAlign='right' singleLine> 
