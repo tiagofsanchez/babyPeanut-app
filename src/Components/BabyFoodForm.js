@@ -77,8 +77,14 @@ class BabyFoodForm extends React.Component {
             disabledFormula: disabledFormula,
         }
 
-       
-       
+        console.log(datetime.substring(0, 10));
+        console.log(datetime.substring(0, 2));    
+        console.log(datetime.substring(3,5));
+        console.log(datetime.substring(6, 10));
+        const newDateTime = `${datetime.substring(6, 10)}-${datetime.substring(3,5)}-${datetime.substring(0, 2)}` 
+        console.log(moment(newDateTime).isValid());
+        
+
         babyFood(food);
         this.setState(initialState);
         
@@ -165,6 +171,7 @@ class BabyFoodForm extends React.Component {
                                 name='datetime'
                                 placeholder='data and time'
                                 value={datetime}
+                                dateFormat={moment().format('YYYY MM DD')}
                                 onChange={(event, { name, value }) => this.handleChange(event, name, value)}
                                 iconPosition="left"
                                 closable

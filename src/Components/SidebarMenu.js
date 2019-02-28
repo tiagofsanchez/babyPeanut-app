@@ -18,7 +18,7 @@ font-size: 1.5em;
 export default class SidebarMenu extends Component {
     state = {
         activeItem: 'Food',
-        visible: false
+       
     }
 
     /* event handler that changes the state of this componemt by "checking in" the state of the parent component */
@@ -29,7 +29,7 @@ export default class SidebarMenu extends Component {
 
     render() {
 
-        const { activeItem, visible } = this.state;
+        const { activeItem } = this.state;
 
         return (
             
