@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Segment, Button } from 'semantic-ui-react';
+import { Form, Segment, Button, Message } from 'semantic-ui-react';
 import shortid from 'shortid';
 import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
@@ -30,7 +30,10 @@ const initialState = {
     quantity: '',
     datetime: '',
     text: '',
-    disabledFormula: true
+    disabledFormula: true,
+    isBreastfeedingError: false,
+    isFormulaError: false,
+    
 };
 
 class BabyFoodForm extends React.Component {
@@ -63,23 +66,35 @@ class BabyFoodForm extends React.Component {
 
     /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
-        const { breast, duration, quantity, datetime, text, disabledFormula } = this.state
+        const { breast, duration, quantity, datetime, text, disabledFormula , isBreastfeedingError , isFormulaError } = this.state
         const { babyFood } = this.props
 
-        const food = {
-            id: shortid.generate(),
-            breast: breast,
-            duration: duration,
-            quantity: quantity,
-            datetime: datetime,
-            text: text,
-            disabledFormula: disabledFormula,
-        }
-
-        babyFood(food);
-        this.setState(initialState);
+        if ((breast === '' && disabledFormula === true) || (duration === '' && disabledFormula === true) || (datetime === '' && disabledFormula === true)) {
+            this.setState({
+                ...this.state,
+                isBreastfeedingError: !isBreastfeedingError,
+            }) 
+        } else if ((quantity === '' && disabledFormula === false) || ((datetime === '' && disabledFormula === false))) {
+            this.setState ({
+                ...this.state,
+                isFormulaError: !isFormulaError,
+            })
+        }       
         
-       
+        else {
+            const food = {
+                id: shortid.generate(),
+                breast: breast,
+                duration: duration,
+                quantity: quantity,
+                datetime: datetime,
+                text: text,
+                disabledFormula: disabledFormula,
+
+            }    
+            babyFood(food);
+            this.setState(initialState);
+        }
     }
 
 
@@ -114,14 +129,13 @@ class BabyFoodForm extends React.Component {
 
     render() {
 
-        const { breast, text, duration, datetime, quantity, disabledFormula } = this.state;
+        const { breast, text, duration, datetime, quantity, disabledFormula , isBreastfeedingError, isFormulaError} = this.state;
         const { editFood } = this.props;
 
         return (
-            <div>
-
+            
                 <Segment basic >
-                    <Form onSubmit={!editFood ? this.handleSubmit : this.handleEdit}>
+                    <Form onSubmit={!editFood ? this.handleSubmit : this.handleEdit} >
                         <div className='field-container0'>
                             <i className="em em-breast-feeding"></i>
                             <Form.Dropdown
@@ -133,6 +147,7 @@ class BabyFoodForm extends React.Component {
                                 options={breastOptions}
                                 value={breast}
                                 disabled={!disabledFormula}
+                                error={isBreastfeedingError}
                             />
                             <Form.Dropdown
                                 className="duration-dropdown"
@@ -143,6 +158,7 @@ class BabyFoodForm extends React.Component {
                                 options={timeOptions}
                                 value={duration}
                                 disabled={!disabledFormula}
+                                error ={isBreastfeedingError}
 
                             />
                             <i className="em em-baby_bottle"></i>
@@ -155,10 +171,11 @@ class BabyFoodForm extends React.Component {
                                 options={quantityOptions}
                                 value={quantity}
                                 disabled={disabledFormula}
+                                error={isFormulaError}
                             />
                             <i className="em em-calendar"></i>
+                            <Form.Field className="date-time1" error={isBreastfeedingError || isFormulaError}>
                             <DateTimeInput
-                                className="date-time1"
                                 name='datetime'
                                 placeholder='data and time'
                                 value={datetime}
@@ -170,9 +187,9 @@ class BabyFoodForm extends React.Component {
                                 initialDate={new Date()}
                                 maxDate={new Date()}
                                 marked={new Date()}
-                                markColor="orange"
-
+                                markColor="orange"      
                             />
+                            </Form.Field>
                             <i className="em em-spiral_note_pad"></i>
                             <Form.TextArea
                                 className="text"
@@ -206,13 +223,7 @@ class BabyFoodForm extends React.Component {
                             </div>
                         </div>
                     </Form>
-
-                </Segment>
-                <div>
-                </div>
-            </div>
-
-
+                </Segment>       
         )
     }
 }

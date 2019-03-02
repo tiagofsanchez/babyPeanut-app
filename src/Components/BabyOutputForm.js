@@ -10,6 +10,7 @@ const initialstate = {
     output: '',
     datetime: '',
     text: '',
+    isOutputError: false,
 }
 
 const outputOptions = [
@@ -44,7 +45,15 @@ class BabyOutputForm extends React.Component {
 
     /* Here we will pass the state of this component to the parent App in a new array babyOutput to be added to App state */
     handleSubmit = (event) => {
-        const { output, datetime, text } = this.state;
+        const { output, datetime, text , isOutputError } = this.state;
+
+        if ( output === '' || datetime=== '') { 
+            this.setState({
+                ...this.state, 
+                isOutputError: !isOutputError,
+            })
+        } else {
+
         const babyOutput = {
             id: shortid.generate(),
             output: output,
@@ -53,7 +62,7 @@ class BabyOutputForm extends React.Component {
         }
         this.props.babyOutput(babyOutput);
         this.setState(initialstate);
-        
+    }
     }
 
     handleEdit = (event) => { 
@@ -74,7 +83,7 @@ class BabyOutputForm extends React.Component {
 
     render() {
 
-        const { output, datetime, text } = this.state;
+        const { output, datetime, text , isOutputError} = this.state;
         const { editOuput } = this.props
 
         return (
@@ -90,9 +99,10 @@ class BabyOutputForm extends React.Component {
                             selection
                             options={outputOptions}
                             value={output}
+                            error ={isOutputError}
                         />
+                        <Form.Field className="date-time" error={isOutputError}>
                         <DateTimeInput
-                             className="date-time"
                              name='datetime'
                              placeholder='data and time'
                              value={datetime}
@@ -105,7 +115,9 @@ class BabyOutputForm extends React.Component {
                              maxDate={new Date()}
                              marked={new Date()}
                              markColor="orange"
+                             
                         />
+                        </Form.Field>
                         <i className="em em-spiral_note_pad"></i>
                         <Form.TextArea
                             className='text'
