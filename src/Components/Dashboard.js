@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import DashboardSummary from './DashboardSummary';
 
 /* ****************** */
 /* Styled Components */
@@ -58,11 +59,14 @@ const Graph6Wrapper = styled.div`
 /*     Component      */
 /* ****************** */
 class Dashboard extends React.Component {
-    render () {
+    render() {
+
+        const { food, output } = this.props;
+
         return (
             <DashboardWrapper>
                 <Graph1Wrapper>
-                    Heeeee
+                    <DashboardSummary food={food} output={output}/>
                 </Graph1Wrapper>
                 <Graph2Wrapper>
                     Heeeee

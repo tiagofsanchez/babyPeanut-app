@@ -164,7 +164,7 @@ class App extends Component {
             </Menu>
             <AppContent>
             {type === 'Dashboard' ? 
-              <Dashboard /> 
+              <Dashboard food={food} output={output}/> 
               :
               type === 'Food' ?
               <BabyFood babyFood={this.babyFood} food={food} entryDelete={this.entryDelete} onEdit={this.editEntry}/>
