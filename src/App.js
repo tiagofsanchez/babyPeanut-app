@@ -78,6 +78,8 @@ class App extends Component {
         data: [babyFood, ...this.state.food.data]
       }
     }))
+    console.log(this.state.food.data);
+    
   }
 
   /* Receives information from BabyOutputForm and saves it into the App state */
@@ -92,7 +94,9 @@ class App extends Component {
 
   /* Updating the selected item from the Modal via BabyFoodForm and BabyOutputForm */
   editEntry = (edit) => {
+    
     const { food, output } = this.state;
+    
     this.setState(prevState => ({
       food: {
         ...food,

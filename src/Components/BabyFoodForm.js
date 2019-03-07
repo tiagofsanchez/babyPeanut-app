@@ -64,7 +64,9 @@ class BabyFoodForm extends React.Component {
 
     };
 
-    /* will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that */
+    /* 
+    It will validate the form first and after it ...
+    ...will pass the state of the form to the parent App in a newly created array babyFood an will create an ID for that */
     handleSubmit = (event) => {
         const { breast, duration, quantity, datetime, text, disabledFormula , isBreastfeedingError , isFormulaError } = this.state
         const { babyFood } = this.props
