@@ -90,7 +90,6 @@ class BabyFoodForm extends React.Component {
                 datetime: datetime,
                 text: text,
                 disabledFormula: disabledFormula,
-
             }    
             babyFood(food);
             this.setState(initialState);

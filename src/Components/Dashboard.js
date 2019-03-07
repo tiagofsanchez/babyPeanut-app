@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import DashboardSummary from './DashboardSummary';
+import DashboardFoodSummary from './DashboardFoodSummary';
 
 /* ****************** */
 /* Styled Components */
@@ -66,13 +66,13 @@ class Dashboard extends React.Component {
         return (
             <DashboardWrapper>
                 <Graph1Wrapper>
-                    <DashboardSummary food={food} output={output}/>
+                    <DashboardFoodSummary food={food} />
                 </Graph1Wrapper>
                 <Graph2Wrapper>
                     Heeeee
                 </Graph2Wrapper>
                 <Graph3Wrapper>
-                    Heeeee
+                
                 </Graph3Wrapper>
                 <Graph4Wrapper>
                     Heeeee
