@@ -8,36 +8,38 @@ import PlaceHolder from './PlaceHolder';
 /* Styled Components */
 /* ****************** */
 const DashboardWrapper = styled.div`
+    display: grid;
+    padding: 30px; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr; 
+    grid-gap: 20px;
+    grid-template-areas:
+    " 1 "
+    " 2 " 
+`;
+
+const SummaryWrapper1 = styled.div`
     display: flex;
+    justify-content: space-evenly;
+    grid-area: 1; 
+`;
+
+const SummaryWrapper2 = styled.div`
+    display: flex;
+    justify-content: space-around;
+    grid-area: 2; 
 `;
 
 const Graph1Wrapper = styled.div`
     flex-basis: 200px; 
-    height:50%;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 `;
 
 const Graph2Wrapper = styled.div`
-    flex-basis: 800px; 
-    height:50%;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-basis: 1050px; 
 `;
 
-
-
-const Graph4Wrapper = styled.div`
-    flex-basis: 200px; 
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
-
-const Graph5Wrapper = styled.div`
-    flex-basis: 800px; 
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
 
 
 
@@ -52,20 +54,22 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <DashboardWrapper>
-                    <Graph1Wrapper>
-                        <DashboardFoodSummary food={food} />
-                    </Graph1Wrapper>
-                    <Graph2Wrapper>
-                        <PlaceHolder />
-                    </Graph2Wrapper>
-                </DashboardWrapper>
-                <DashboardWrapper>
-                <Graph4Wrapper>
-                    <DashboardOutputSummary output={output} />
-                </Graph4Wrapper>
-                <Graph5Wrapper>
-                    <PlaceHolder />
-                </Graph5Wrapper>
+                    <SummaryWrapper1>
+                        <Graph1Wrapper>
+                            <DashboardFoodSummary food={food} />
+                        </Graph1Wrapper>
+                        <Graph2Wrapper>
+                            <PlaceHolder />
+                        </Graph2Wrapper>
+                    </SummaryWrapper1>
+                    <SummaryWrapper2>
+                        <Graph1Wrapper>
+                            <DashboardOutputSummary output={output} />
+                        </Graph1Wrapper>
+                        <Graph2Wrapper>
+                            <PlaceHolder />
+                        </Graph2Wrapper>
+                    </SummaryWrapper2>
                 </DashboardWrapper>
             </div>
         )
