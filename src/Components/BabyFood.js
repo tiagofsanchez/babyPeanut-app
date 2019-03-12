@@ -21,21 +21,21 @@ const Form = styled.div`
     margin: 5px;
     background-color:  rgb(192, 222, 237, 0.3);
     border-radius: 10px;
-    flex-basis: 200px; 
+    flex-basis: 200px;
 `;
 
-class BabyFood extends React.Component{
-    render () {
-        
-        const { babyFood , food , entryDelete , onEdit } = this.props;
+class BabyFood extends React.Component {
+    render() {
+
+        const { babyFood, food, entryDelete, onEdit } = this.props;
 
         return (
             <FlexBox>
-            <H3>Your baby <Span>food</Span></H3>
-            <Form>
-            <BabyFoodForm babyFood={babyFood}/>
-            </Form>
-            <BabyFoodOuput food={food} entryDelete={entryDelete} onEdit={onEdit}/>
+                <H3>Your baby <Span>food</Span></H3>
+                <Form>
+                    <BabyFoodForm babyFood={babyFood} />
+                </Form>
+                <BabyFoodOuput food={food} entryDelete={entryDelete} onEdit={onEdit} />
             </FlexBox>
         )
     }
