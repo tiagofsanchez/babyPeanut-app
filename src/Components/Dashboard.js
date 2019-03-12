@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DashboardFoodSummary from './DashboardFoodSummary';
 import DashboardOutputSummary from './DashboardOutputSummary';
 import PlaceHolder from './PlaceHolder';
+import FoodChart from './FoodChart';
 
 /* ****************** */
 /* Styled Components */
@@ -20,13 +21,11 @@ const DashboardWrapper = styled.div`
 
 const SummaryWrapper1 = styled.div`
     display: flex;
-    justify-content: space-evenly;
     grid-area: 1; 
 `;
 
 const SummaryWrapper2 = styled.div`
     display: flex;
-    justify-content: space-around;
     grid-area: 2; 
 `;
 
@@ -37,7 +36,8 @@ const Graph1Wrapper = styled.div`
 `;
 
 const Graph2Wrapper = styled.div`
-    flex-basis: 1050px; 
+    flex: 1 1 1050px;
+    border: solid 1px grey; 
 `;
 
 
@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
                             <DashboardFoodSummary food={food} />
                         </Graph1Wrapper>
                         <Graph2Wrapper>
-                            <PlaceHolder />
+                            <FoodChart food={food} />
                         </Graph2Wrapper>
                     </SummaryWrapper1>
                     <SummaryWrapper2>
