@@ -2,58 +2,45 @@ import React from 'react';
 import styled from 'styled-components';
 import DashboardFoodSummary from './DashboardFoodSummary';
 import DashboardOutputSummary from './DashboardOutputSummary';
+import PlaceHolder from './PlaceHolder';
 
 /* ****************** */
 /* Styled Components */
 /* ****************** */
 const DashboardWrapper = styled.div`
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33% ;
-    grid-template-row: 50% 50% ;  
-    height: 100%;
-    padding: 50px;  
+    padding: 30px; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr; 
     grid-gap: 20px;
+    grid-template-areas:
+    " 1 "
+    " 2 " 
+`;
+
+const SummaryWrapper1 = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    grid-area: 1; 
+`;
+
+const SummaryWrapper2 = styled.div`
+    display: flex;
     justify-content: space-around;
-    grid-template-areas: 
-    "Graph1 Graph2 Graph3"
-    "Graph4 Graph5 Graph6"
+    grid-area: 2; 
 `;
 
 const Graph1Wrapper = styled.div`
-    grid-area: Graph1
+    flex-basis: 200px; 
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 `;
 
 const Graph2Wrapper = styled.div`
-    grid-area: Graph2
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-basis: 1050px; 
 `;
 
-const Graph3Wrapper = styled.div`
-    grid-area: Graph3
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
 
-const Graph4Wrapper = styled.div`
-    grid-area: Graph4
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
-
-const Graph5Wrapper = styled.div`
-    grid-area: Graph5
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
-
-const Graph6Wrapper = styled.div`
-    grid-area: Graph6
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-`;
 
 
 /* ****************** */
@@ -65,26 +52,26 @@ class Dashboard extends React.Component {
         const { food, output } = this.props;
 
         return (
-            <DashboardWrapper>
-                <Graph1Wrapper>
-                    <DashboardFoodSummary food={food} />
-                </Graph1Wrapper>
-                <Graph2Wrapper>
-                    Heeeee
-                </Graph2Wrapper>
-                <Graph3Wrapper>
-                
-                </Graph3Wrapper>
-                <Graph4Wrapper>
-                    <DashboardOutputSummary output={output}/>
-                </Graph4Wrapper>
-                <Graph5Wrapper>
-                    Heeeee
-                </Graph5Wrapper>
-                <Graph6Wrapper>
-                    Heeeee
-                </Graph6Wrapper>
-            </DashboardWrapper>
+            <div>
+                <DashboardWrapper>
+                    <SummaryWrapper1>
+                        <Graph1Wrapper>
+                            <DashboardFoodSummary food={food} />
+                        </Graph1Wrapper>
+                        <Graph2Wrapper>
+                            <PlaceHolder />
+                        </Graph2Wrapper>
+                    </SummaryWrapper1>
+                    <SummaryWrapper2>
+                        <Graph1Wrapper>
+                            <DashboardOutputSummary output={output} />
+                        </Graph1Wrapper>
+                        <Graph2Wrapper>
+                            <PlaceHolder />
+                        </Graph2Wrapper>
+                    </SummaryWrapper2>
+                </DashboardWrapper>
+            </div>
         )
     }
 }
