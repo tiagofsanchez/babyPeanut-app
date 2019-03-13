@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend  } from 'recharts';
 import styled from 'styled-components';
+import * as moment from 'moment';
 
 
 /* ****************** */
@@ -19,9 +20,12 @@ class FoodChart extends React.Component {
     render() {
         
         const { food } = this.props;
-        
-        const data = food.data.map(item =>  
-             ({name: item.datetime , uv: item.duration, pv: item.quantity}));
+
+        const data = food.data.map(item => {
+            const date = item.datetime.substring(6, 10) +-+ item.datetime.substring(3, 5) +-+ item.datetime.substring(0, 2) +" "+ item.datetime.substring(11, 16);
+            const newDate = moment(date).format('Do MMM'); 
+             return ({name: newDate , uv: item.duration, pv: item.quantity})});
+
 
         return (
             <GraphWrapper>
