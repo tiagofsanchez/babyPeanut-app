@@ -1,9 +1,13 @@
 import React from 'react';
 import { Statistic } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 /* ****************** */
 /* Styled Components */
 /* ****************** */
+const DashboardFrame = styled.div` 
+    padding: 20px; 
+`;
 
 
 /* ****************** */
@@ -17,14 +21,14 @@ class DashboardOutputSummary extends React.Component {
         const totalOutput = output.data.length;
 
         return (
-            <div>
+            <DashboardFrame>
                 <Statistic.Group widths="1">
                     <Statistic>
                         <Statistic.Label>N. of Outputs</Statistic.Label>
                         <Statistic.Value>{output ? totalOutput : "0"}</Statistic.Value>
                     </Statistic>
                 </Statistic.Group>
-            </div>
+                </DashboardFrame>
         )
     }
 }

@@ -5,10 +5,10 @@ import './BabyFoodForm.css'
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 const timeOptions = [
-    { key: '5', text: '5 min', value: '5 min' },
-    { key: '10', text: '10 min', value: '10 min' },
-    { key: '15', text: '15 min', value: '15 min' },
-    { key: '20', text: '20 min', value: '20 min' },
+    { key: '5', text: '5 min', value: '5' },
+    { key: '10', text: '10 min', value: '10' },
+    { key: '15', text: '15 min', value: '15' },
+    { key: '20', text: '20 min', value: '20' },
 ];
 
 const breastOptions = [
@@ -18,10 +18,10 @@ const breastOptions = [
 ];
 
 const quantityOptions = [
-    { key: '5', text: '5 ml', value: '5 ml' },
-    { key: '10', text: '10 ml', value: '10 ml' },
-    { key: '15', text: '15 ml', value: '15 ml' },
-    { key: '20', text: '20 ml', value: '20 ml' },
+    { key: '5', text: '5 ml', value: '5' },
+    { key: '10', text: '10 ml', value: '10' },
+    { key: '15', text: '15 ml', value: '15' },
+    { key: '20', text: '20 ml', value: '20' },
 ]
 
 const initialState = {

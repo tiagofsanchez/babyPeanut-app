@@ -3,6 +3,7 @@ import './BabyOutputForm.css';
 import shortid from 'shortid';
 import { Segment, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
+import * as moment from 'moment';
 
 
 
@@ -37,6 +38,7 @@ class BabyOutputForm extends React.Component {
 
     /* Handling all changes of this component and saves it on the component state */
     handleChange = (event, name, value) => {
+        const newDate = value.substring(6, 10) +-+ value.substring(3, 5) +-+ value.substring(0, 2) +" "+ value.substring(11, 16);
         this.setState({
             [name ? name : event.target.name]: value ? value : event.target.value
         })
