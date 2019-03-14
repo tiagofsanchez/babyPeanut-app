@@ -26,7 +26,7 @@ class FoodChart extends React.Component {
             if (!acc[key]) {
                 acc[key] = [];
             }
-            acc[key].pus(obj);
+            acc[key].push(obj);
             return acc;
         }, {})
     }
@@ -37,7 +37,6 @@ class FoodChart extends React.Component {
             return acc + Number(obj[property]);
         }, 0)
     }
-
 
     render() {
 
@@ -51,11 +50,27 @@ class FoodChart extends React.Component {
             return objectArray;
         }, {});
 
-        const data = newFood.map(item => {
-            const date = item.substring(6, 10) + -+ item.substring(3, 5) + -+ item.substring(0, 2) + " " + item.substring(11, 16);
-            const newDate = moment(date).format('Do MMM');
-            return ({ name: newDate, uv: item.duration, pv: item.quantity })
-        });
+        console.log(newFood);
+       const data = [
+            {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+            {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+            {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+            {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+            {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+            {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+            {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+      ]; 
+        
+        /* const data = {
+            if(newFood) {
+                newFood.map(item => {
+                    const date = item.substring(6, 10) + -+ item.substring(3, 5) + -+ item.substring(0, 2) + " " + item.substring(11, 16);
+                    const newDate = moment(date).format('Do MMM');
+                       return ({ name: newDate, uv: item.duration, pv: item.quantity })
+                })
+            } else {return {}}
+         
+        } */
 
 
         return (
