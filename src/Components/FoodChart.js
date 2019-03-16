@@ -19,23 +19,17 @@ const GraphWrapper = styled.div`
 
 class FoodChart extends React.Component {
 
-    /* Function que vai agregar a meu objectArray pela propriedade que eu quero */
+    /* Function que vai agregar a meu objectArray pela propriedade que eu quero e soma o quantity e duration*/
     groupBy = (objectArray, property) => {
         return objectArray.data.reduce((acc, obj) => {
-            var key = obj[property];
-            if (!acc[key]) {
-                acc[key] = [];
-            }
-            acc[key].push(obj);
-            return acc;
+            const key = obj[property].slice(0, 10);
+            return {
+                ...acc,
+                [key]: {
+                    quantity: acc[key] ? acc[key].quantity + Number(obj.quantity) : Number(obj.quantity),
+                    duration: acc[key] ? acc[key].duration + Number(obj.duration) : Number(obj.duration),
+                }}
         }, {})
-    }
-
-    /* Function que vai somar uma certa propriedade de um objectArray */
-    sum = (objectArray, property) => {
-        return objectArray.reduce((acc, obj) => {
-            return acc + Number(obj[property]);
-        }, 0)
     }
 
     render() {
@@ -43,14 +37,8 @@ class FoodChart extends React.Component {
         const { food } = this.props;
 
         const groupByFood = this.groupBy(food, "datetime");
-        const newFood = Object.keys(groupByFood).reduce((objectArray, key) => {
-            const totalDuration = this.sum(groupByFood[key], "duration");
-            const totalQuantity = this.sum(groupByFood[key], "quantity");
-            objectArray[key] = { duration: totalDuration, quantity: totalQuantity };
-            return objectArray;
-        }, {});
-
-        console.log(newFood);
+       
+        console.log(groupByFood);
        const data = [
             {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
             {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
