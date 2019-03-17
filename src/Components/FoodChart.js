@@ -15,8 +15,6 @@ const GraphWrapper = styled.div`
 /* ****************** */
 /*     Component      */
 /* ****************** */
-
-
 class FoodChart extends React.Component {
 
     /* Function que vai agregar a meu objectArray pela propriedade que eu quero e soma o quantity e duration*/
@@ -43,8 +41,8 @@ class FoodChart extends React.Component {
             const newDate = moment(date).format('Do MMM');
             return ({ 
                 name: newDate, 
-                uv: groupByFood[item].quantity, 
-                pv: groupByFood[item].duration 
+                formula: groupByFood[item].quantity, 
+                breast: groupByFood[item].duration 
             })
         })
 
@@ -52,12 +50,12 @@ class FoodChart extends React.Component {
             <GraphWrapper>
                 <BarChart width={600} height={250} data={data}>
                     <XAxis dataKey="name" />
-                    <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-                    <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+                    <YAxis yAxisId="left" label="time (min)" orientation="left" stroke="rgb(0, 132, 180)" />
+                    <YAxis yAxisId="right" label="quantity (ml)" orientation="right" stroke="rgb(192, 222, 237)" />
                     <Tooltip />
                     <Legend />
-                    <Bar yAxisId="left" dataKey="pv" fill="#8884d8" />
-                    <Bar yAxisId="right" dataKey="uv" fill="#82ca9d" />
+                    <Bar yAxisId="left" dataKey="breast" fill="rgb(0, 132, 180)" legendType="circle" />
+                    <Bar yAxisId="right" dataKey="formula" fill="rgb(192, 222, 237)" legendType="circle"/>
                 </BarChart>
             </GraphWrapper>
         )
