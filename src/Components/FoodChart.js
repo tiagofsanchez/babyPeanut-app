@@ -9,7 +9,7 @@ import Loading from './Loading';
 /* Styled Components */
 /* ****************** */
 const GraphWrapper = styled.div`
-    padding: 40px 25px 25px 25px; 
+    padding:25px 25px 0px 25px; 
 `;
 
 
@@ -55,17 +55,16 @@ class FoodChart extends React.Component {
             {food.data.length<1 ?  
             <Loading /> 
             :
-            <GraphWrapper>             
-                    <BarChart width={700} height={250} data={data}>
-                        <XAxis dataKey="name" />
+                        
+                    <BarChart width={700} height={250} data={data} margin={{ top: 35, right: 25, bottom: 0, left: 25 }}>
+                        <XAxis dataKey="name" tick={false}/>
                         <YAxis yAxisId="left" label={{ value: 'time (mins)', angle: -90, position: 'insideLeft' }} orientation="left" stroke="rgb(0, 132, 180)" />
                         <YAxis yAxisId="right" label={{ value: 'quantity (ml)', angle: 90, position: 'insideRight' }} orientation="right" stroke="rgb(192, 222, 237)" />
                         <Tooltip />
-                        <Legend />
                         <Bar yAxisId="left" dataKey="breast" fill="rgb(0, 132, 180)" legendType="circle" barSize={25}/>
                         <Bar yAxisId="right" dataKey="formula" fill="rgb(192, 222, 237)" legendType="circle" barSize={25}/>
                     </BarChart>
-            </GraphWrapper>
+        
                     }
             </div>
         )

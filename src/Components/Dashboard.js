@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
                             <DashboardOutputSummary output={output} />
                         </Graph1Wrapper>
                         <Graph2Wrapper>
-                            <OutputChart /> 
+                            <OutputChart output={output} /> 
                         </Graph2Wrapper>
                     </SummaryWrapper2>
                 </DashboardWrapper>
