@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import DashboardFoodSummary from './DashboardFoodSummary';
 import DashboardOutputSummary from './DashboardOutputSummary';
-import PlaceHolder from './PlaceHolder';
+import OutputChart from './OutputChart';
 import FoodChart from './FoodChart';
 
 /* ****************** */
@@ -37,7 +37,6 @@ const Graph1Wrapper = styled.div`
 
 const Graph2Wrapper = styled.div`
     flex: 1 1 1050px;
-    border: solid 1px grey; 
 `;
 
 
@@ -67,7 +66,7 @@ class Dashboard extends React.Component {
                             <DashboardOutputSummary output={output} />
                         </Graph1Wrapper>
                         <Graph2Wrapper>
-                            <PlaceHolder />
+                            <OutputChart /> 
                         </Graph2Wrapper>
                     </SummaryWrapper2>
                 </DashboardWrapper>

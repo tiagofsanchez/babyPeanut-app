@@ -2,6 +2,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import styled from 'styled-components';
 import * as moment from 'moment';
+import Loading from './Loading';
 
 
 /* ****************** */
@@ -34,30 +35,39 @@ class FoodChart extends React.Component {
     render() {
 
         const { food } = this.props;
-
+        /* I am grouping the my object array food considering datetime property and returning a new objec */
         const groupByFood = this.groupBy(food, "datetime");
+        /* defining variable data, that will go to the chart of my component considering the data on the state of tha app after transforming it for the format we would want */
         const data = Object.keys(groupByFood).map(item => {
             const date = item.substring(6, 10) + -+ item.substring(3, 5) + -+ item.substring(0, 2);
             const newDate = moment(date).format('Do MMM');
             return ({ 
                 name: newDate, 
                 formula: groupByFood[item].quantity, 
-                breast: groupByFood[item].duration 
+                breast: groupByFood[item].duration, 
             })
         })
+        console.log(food.data);
+        
 
         return (
-            <GraphWrapper>
-                <BarChart width={600} height={250} data={data}>
-                    <XAxis dataKey="name" />
-                    <YAxis yAxisId="left" label="time (min)" orientation="left" stroke="rgb(0, 132, 180)" />
-                    <YAxis yAxisId="right" label="quantity (ml)" orientation="right" stroke="rgb(192, 222, 237)" />
-                    <Tooltip />
-                    <Legend />
-                    <Bar yAxisId="left" dataKey="breast" fill="rgb(0, 132, 180)" legendType="circle" />
-                    <Bar yAxisId="right" dataKey="formula" fill="rgb(192, 222, 237)" legendType="circle"/>
-                </BarChart>
+            <div>
+            {food.data.length<1 ?  
+            <Loading /> 
+            :
+            <GraphWrapper>             
+                    <BarChart width={700} height={250} data={data}>
+                        <XAxis dataKey="name" />
+                        <YAxis yAxisId="left" label={{ value: 'time (mins)', angle: -90, position: 'insideLeft' }} orientation="left" stroke="rgb(0, 132, 180)" />
+                        <YAxis yAxisId="right" label={{ value: 'quantity (ml)', angle: 90, position: 'insideRight' }} orientation="right" stroke="rgb(192, 222, 237)" />
+                        <Tooltip />
+                        <Legend />
+                        <Bar yAxisId="left" dataKey="breast" fill="rgb(0, 132, 180)" legendType="circle" barSize={25}/>
+                        <Bar yAxisId="right" dataKey="formula" fill="rgb(192, 222, 237)" legendType="circle" barSize={25}/>
+                    </BarChart>
             </GraphWrapper>
+                    }
+            </div>
         )
     }
 }
