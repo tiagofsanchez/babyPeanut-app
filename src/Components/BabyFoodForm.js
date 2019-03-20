@@ -124,8 +124,11 @@ class BabyFoodForm extends React.Component {
         const { disabledFormula } = this.state;
         this.setState({
             ...this.setState(initialState),
-            disabledFormula: !disabledFormula
+            disabledFormula: !disabledFormula,
+
         })
+        console.log(this.state);
+        
     }
 
     render() {
@@ -208,7 +211,8 @@ class BabyFoodForm extends React.Component {
                                             content="Breast"
                                             onClick={this.changeDisable}
                                             active={disabledFormula}
-                                            disabled={!disabledFormula}
+                                            color={disabledFormula? 'grey' : null }
+                                        
                                         >
                                         </Button>
                                         <Button.Or />
@@ -216,7 +220,8 @@ class BabyFoodForm extends React.Component {
                                             content="Formula"
                                             onClick={this.changeDisable}
                                             active={!disabledFormula}
-                                            disabled={disabledFormula}
+                                            color={!disabledFormula?  'grey' : null }
+                                            
                                         >
                                         </Button>
                                     </Button.Group>
