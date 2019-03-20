@@ -34,7 +34,7 @@ const initialState = {
     isBreastfeedingError: false,
     isFormulaError: false,
     
-};
+}
 
 class BabyFoodForm extends React.Component {
 

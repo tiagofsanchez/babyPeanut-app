@@ -57,10 +57,11 @@ class FoodChart extends React.Component {
             :
                         
                     <BarChart width={700} height={250} data={data} margin={{ top: 35, right: 25, bottom: 0, left: 25 }}>
-                        <XAxis dataKey="name" tick={false}/>
+                        <XAxis dataKey="name" />
                         <YAxis yAxisId="left" label={{ value: 'time (mins)', angle: -90, position: 'insideLeft' }} orientation="left" stroke="rgb(0, 132, 180)" />
                         <YAxis yAxisId="right" label={{ value: 'quantity (ml)', angle: 90, position: 'insideRight' }} orientation="right" stroke="rgb(192, 222, 237)" />
                         <Tooltip />
+                        <Legend verticalAlign="top" height={36}/>
                         <Bar yAxisId="left" dataKey="breast" fill="rgb(0, 132, 180)" legendType="circle" barSize={25}/>
                         <Bar yAxisId="right" dataKey="formula" fill="rgb(192, 222, 237)" legendType="circle" barSize={25}/>
                     </BarChart>
