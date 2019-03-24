@@ -10,12 +10,13 @@ class BabyFoodOutput extends React.Component {
 
     state = {
         openModal: false,
-        editFood: ''
+        editFood: '',
+
     }
     
 
     /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
-    handleEditClick = (event , item = null ) => {
+    handleEditClick = (event , item ) => {
         const { openModal } = this.state;
         this.setState({
             openModal: !openModal,
@@ -37,12 +38,12 @@ class BabyFoodOutput extends React.Component {
 
     render() {
         
-        const { openModal , editFood } = this.state;
+        const { openModal , editFood , column , direction } = this.state;
         const { food , onEdit } = this.props;
 
         return (
             <div style={{ margin: "10px" }}>
-                <Table unstackable size="small" striped>
+                <Table unstackable size="small" striped sortable>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Date</Table.HeaderCell>

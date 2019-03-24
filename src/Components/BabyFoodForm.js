@@ -127,7 +127,6 @@ class BabyFoodForm extends React.Component {
             disabledFormula: !disabledFormula,
 
         })
-        console.log(this.state);
         
     }
 
