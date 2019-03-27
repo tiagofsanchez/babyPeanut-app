@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button , Label } from 'semantic-ui-react';
+import { Table, Button, Label, Menu , Icon } from 'semantic-ui-react';
 import './BabyOutputForm.css'
 import * as moment from 'moment';
 import EditBabyInput from './EditBabyInput';
@@ -13,15 +13,14 @@ class BabyFoodOutput extends React.Component {
         editFood: '',
 
     }
-    
 
     /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
-    handleEditClick = (event , item ) => {
+    handleEditClick = (event, item) => {
         const { openModal } = this.state;
         this.setState({
             openModal: !openModal,
             editFood: item
-        }) 
+        })
     }
 
     /* Will close the model by changing the state of the component openModal */
@@ -32,18 +31,35 @@ class BabyFoodOutput extends React.Component {
     }
 
     /* Will delete the item that was selected */
-    handleDelete =( event , id ) => {
+    handleDelete = (event, id) => {
         this.props.entryDelete(id)
     }
 
+    /* Calculting the number of pages that I need in my pagination */
+    getNumberOfPages = (array) => { 
+        const numberPerPage = 5;
+        if (array.length < numberPerPage ) {
+            const numberOfPages = 1
+            return numberOfPages
+        } else { 
+            const numberOfPages = Math.ceil(array.length/ numberPerPage)
+            return numberOfPages
+        }     
+    }
+
+    loading
+
     render() {
+
+        const { openModal, editFood, column, direction } = this.state;
+        const { food, onEdit } = this.props;
         
-        const { openModal , editFood , column , direction } = this.state;
-        const { food , onEdit } = this.props;
+        const pages = this.getNumberOfPages(food.data);
+          
 
         return (
             <div style={{ margin: "10px" }}>
-                <Table unstackable size="small" striped sortable>
+                <Table unstackable size="small" >
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Date</Table.HeaderCell>
@@ -56,7 +72,7 @@ class BabyFoodOutput extends React.Component {
 
                     {/* This will need to be here so that the header of the table doesn't repeat itself */}
                     {food.data && food.data.map(item => {
-                        const newDate = item.datetime.substring(6, 10) +-+ item.datetime.substring(3, 5) +-+ item.datetime.substring(0, 2) +" "+ item.datetime.substring(11, 16);
+                        const newDate = item.datetime.substring(6, 10) + -+ item.datetime.substring(3, 5) + -+ item.datetime.substring(0, 2) + " " + item.datetime.substring(11, 16);
                         return (
                             <Table.Body key={item.id}>
                                 <Table.Row >
@@ -64,7 +80,7 @@ class BabyFoodOutput extends React.Component {
                                     <Table.Cell >{item.disabledFormula ? item.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.duration : item.quantity}</Table.Cell>
                                     <Table.Cell >{item.text}</Table.Cell>
-                                    <Table.Cell textAlign='right' singleLine> 
+                                    <Table.Cell textAlign='right' singleLine>
                                         <Button
                                             basic
                                             color="orange"
@@ -85,9 +101,19 @@ class BabyFoodOutput extends React.Component {
                         )
                     })}
                 </Table>
-                <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit}/>
-            </div>
+                <Menu pagination size="tiny">
+                    <Menu.Item as='a' icon>
+                        <Icon name='chevron left' />
+                    </Menu.Item>
+                    <Menu.Item as='a'>{pages}</Menu.Item>
+                    <Menu.Item as='a' icon>
+                        <Icon name='chevron right' />
+                    </Menu.Item>
+                </Menu>
             
+                <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit} />
+            </div>
+
 
         )
     }
