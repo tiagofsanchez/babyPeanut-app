@@ -11,6 +11,7 @@ class BabyFoodOutput extends React.Component {
     state = {
         openModal: false,
         editFood: '',
+        currentPage: 1,
 
     }
 
@@ -47,15 +48,48 @@ class BabyFoodOutput extends React.Component {
         }     
     }
 
-    loading
+    /* Get the list to load on the table, depending on pagination*/
+    getLoadList = (array) => {
+        let pageList = [];
+        const numberPerPage = 5;
 
+        const { currentPage } = this.state;
+        const begin = ((currentPage -1)* numberPerPage)
+        const end = begin + numberPerPage; 
+        return pageList = array.slice (begin, end)
+    }
+
+    previousPage = () => { 
+        const { currentPage } = this.state;
+        
+        if ( currentPage > 1 ) {
+            this.setState({
+                currentPage: currentPage - 1,
+            })
+        }
+    }
+
+    nextPage = () => { 
+        const { currentPage } = this.state;
+        const { food } = this.props;
+        const pages = this.getNumberOfPages(food.data);
+        
+        if (pages > currentPage) { 
+            this.setState({
+                currentPage: currentPage + 1,
+            })
+        } 
+
+    }
+ 
     render() {
 
-        const { openModal, editFood, column, direction } = this.state;
+        const { openModal, editFood , currentPage } = this.state;
         const { food, onEdit } = this.props;
         
         const pages = this.getNumberOfPages(food.data);
-          
+        const list = this.getLoadList(food.data);
+        
 
         return (
             <div style={{ margin: "10px" }}>
@@ -71,7 +105,7 @@ class BabyFoodOutput extends React.Component {
                     </Table.Header>
 
                     {/* This will need to be here so that the header of the table doesn't repeat itself */}
-                    {food.data && food.data.map(item => {
+                    {list && list.map(item => {
                         const newDate = item.datetime.substring(6, 10) + -+ item.datetime.substring(3, 5) + -+ item.datetime.substring(0, 2) + " " + item.datetime.substring(11, 16);
                         return (
                             <Table.Body key={item.id}>
@@ -102,11 +136,17 @@ class BabyFoodOutput extends React.Component {
                     })}
                 </Table>
                 <Menu pagination size="tiny">
-                    <Menu.Item as='a' icon>
+                    <Menu.Item
+                        onClick={this.previousPage}
+                        as='a'
+                        icon>
                         <Icon name='chevron left' />
                     </Menu.Item>
-                    <Menu.Item as='a'>{pages}</Menu.Item>
-                    <Menu.Item as='a' icon>
+                    <Menu.Item >{currentPage} of {pages}</Menu.Item>
+                    <Menu.Item
+                        onClick={this.nextPage}
+                        as='a'
+                        icon>
                         <Icon name='chevron right' />
                     </Menu.Item>
                 </Menu>

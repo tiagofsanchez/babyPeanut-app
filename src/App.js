@@ -78,7 +78,6 @@ class App extends Component {
         data: [babyFood, ...this.state.food.data]
       }
     }))
-    console.log(this.state.food.data);
     
   }
 
