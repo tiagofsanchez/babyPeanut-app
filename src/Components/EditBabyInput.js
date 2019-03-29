@@ -3,6 +3,7 @@ import { Modal } from 'semantic-ui-react';
 import BabyFoodForm from './BabyFoodForm';
 import BabyOutputForm from './BabyOutputForm';
 
+
 class EditBabyInput extends React.Component {
 
     close = () => this.props.isClose(false)
@@ -10,7 +11,8 @@ class EditBabyInput extends React.Component {
     render() {
 
         const { editFood , openModal , onEdit , editOuput } = this.props;
-        
+
+
         return (
             <div> 
                 <Modal
@@ -22,7 +24,7 @@ class EditBabyInput extends React.Component {
                 <Modal.Content>
                     {editFood? 
                     <BabyFoodForm editFood={editFood} onEdit={onEdit} onClose={this.close}/>
-                    : 
+                    :
                     <BabyOutputForm editOuput={editOuput} onEdit={onEdit} onClose={this.close}/>
                     }
                 </Modal.Content>

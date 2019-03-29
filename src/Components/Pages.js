@@ -3,15 +3,15 @@ import { Menu, Icon } from 'semantic-ui-react';
 
 
 /* To Dos:
-1. fix pages component and make it reusable: the problem will be the state of the component
-2. Option of full table in a modal elemet where the user could see all details of their entries
+1. fix pages component and make it reusable: the problem will be the state of the component - 
+2. Option of full table in a modal elemet where the user could see all details of their entries - done
 3. Repeat that for Output and not only food */
 
 class Pages extends React.Component {
     state= { 
         currentPage: 1,
     }
-  
+    
     
      /* Calculting the number of pages that I need in my pagination */
      getNumberOfPages = (array) => { 
@@ -28,17 +28,20 @@ class Pages extends React.Component {
     /* Gets me the previous page */
     previousPage = () => {
         const { currentPage } = this.state;
+        const { changeCurrentPage } = this.props;
         if (currentPage > 1) {
             this.setState({
                 currentPage: currentPage - 1,
             })
         }
+        changeCurrentPage(currentPage);
+        console.log(currentPage);
     }
 
     /* gets me the next page */
     nextPage = () => {
         const { currentPage } = this.state;
-        const { food } = this.props;
+        const { food , changeCurrentPage} = this.props;
         const pages = this.getNumberOfPages(food.data);
 
         if (pages > currentPage) {
@@ -46,7 +49,9 @@ class Pages extends React.Component {
                 currentPage: currentPage + 1,
             })
         }
-
+        changeCurrentPage(currentPage);
+        console.log(currentPage);
+        
     }
 
     render() {

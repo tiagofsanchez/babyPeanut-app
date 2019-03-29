@@ -1,9 +1,10 @@
 import React from 'react';
-import { Table, Button, Label, Menu , Icon } from 'semantic-ui-react';
+import { Table, Button, Label, Menu, Icon } from 'semantic-ui-react';
 import './BabyOutputForm.css'
 import * as moment from 'moment';
 import EditBabyInput from './EditBabyInput';
 import Pages from './Pages';
+import ExpandTable from './ExpandTable';
 
 
 
@@ -11,6 +12,7 @@ class BabyFoodOutput extends React.Component {
 
     state = {
         openModal: false,
+        openTable: false,
         editFood: '',
         currentPage: 1,
 
@@ -28,7 +30,16 @@ class BabyFoodOutput extends React.Component {
     /* Will close the model by changing the state of the component openModal */
     closeModal = (isClose) => {
         this.setState({
-            openModal: isClose
+            openModal: isClose, 
+            openTable: isClose
+        })
+    }
+
+    /* Will open the modal with the full table */
+    openTable = () => { 
+        const { openTable } = this.state;
+        this.setState({
+            openTable: !openTable
         })
     }
 
@@ -38,15 +49,15 @@ class BabyFoodOutput extends React.Component {
     }
 
     /* Calculting the number of pages that I need in my pagination */
-    getNumberOfPages = (array) => { 
-        const numberPerPage = 5;
-        if (array.length < numberPerPage ) {
+    getNumberOfPages = (array) => {
+        const numberPerPage = 2;
+        if (array.length < numberPerPage) {
             const numberOfPages = 1
             return numberOfPages
-        } else { 
-            const numberOfPages = Math.ceil(array.length/ numberPerPage)
+        } else {
+            const numberOfPages = Math.ceil(array.length / numberPerPage)
             return numberOfPages
-        }     
+        }
     }
 
     /* Get the list to load on the table, depending on pagination*/
@@ -54,42 +65,26 @@ class BabyFoodOutput extends React.Component {
         const { currentPage } = this.state;
         let pageList = [];
         const numberPerPage = 2;
-        const begin = ((currentPage -1)* numberPerPage)
-        const end = begin + numberPerPage; 
-        return pageList = array.slice (begin, end)
+        const begin = ((currentPage - 1) * numberPerPage)
+        const end = begin + numberPerPage;
+        return pageList = array.slice(begin, end)
     }
 
-    previousPage = () => { 
-        const { currentPage } = this.state;
-        
-        if ( currentPage > 1 ) {
-            this.setState({
-                currentPage: currentPage - 1,
-            })
-        }
+    changeCurrenPagetHandler = (pageNumber) => { 
+        this.setState({
+            currentPage: pageNumber,
+        })
+        console.log(this.state.currentPage)
     }
-
-    nextPage = () => { 
-        const { currentPage } = this.state;
-        const { food } = this.props;
-        const pages = this.getNumberOfPages(food.data);
-        
-        if (pages > currentPage) { 
-            this.setState({
-                currentPage: currentPage + 1,
-            })
-        } 
-
-    }
- 
+    
     render() {
 
-        const { openModal, editFood , currentPage } = this.state;
+        const { openModal, editFood, currentPage , openTable } = this.state;
         const { food, onEdit } = this.props;
-        
+
         const pages = this.getNumberOfPages(food.data);
         const list = this.getLoadList(food.data);
-        
+
 
         return (
             <div style={{ margin: "10px" }}>
@@ -135,23 +130,14 @@ class BabyFoodOutput extends React.Component {
                         )
                     })}
                 </Table>
-                <Menu pagination size="tiny">
-                    <Menu.Item
-                        onClick={this.previousPage}
-                        as='a'
-                        icon>
-                        <Icon name='chevron left' />
-                    </Menu.Item>
-                    <Menu.Item >{currentPage} of {pages}</Menu.Item>
-                    <Menu.Item
-                        onClick={this.nextPage}
-                        as='a'
-                        icon>
-                        <Icon name='chevron right' />
-                    </Menu.Item>
-                </Menu>
-                <Pages food={food}/>
-                <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit} />
+                <Button
+                    floated="right"
+                    size="mini"
+                    onClick={this.openTable}
+                >Full Table</Button>
+                <Pages food={food} changeCurrentPage={this.changeCurrenPagetHandler}/>
+                <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit} food={food}/>
+                <ExpandTable openTable={openTable} isClose={this.closeModal} food={food}/>
             </div>
 
 
