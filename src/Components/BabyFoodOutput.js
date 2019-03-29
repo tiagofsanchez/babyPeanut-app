@@ -3,6 +3,7 @@ import { Table, Button, Label, Menu , Icon } from 'semantic-ui-react';
 import './BabyOutputForm.css'
 import * as moment from 'moment';
 import EditBabyInput from './EditBabyInput';
+import Pages from './Pages';
 
 
 
@@ -50,10 +51,9 @@ class BabyFoodOutput extends React.Component {
 
     /* Get the list to load on the table, depending on pagination*/
     getLoadList = (array) => {
-        let pageList = [];
-        const numberPerPage = 5;
-
         const { currentPage } = this.state;
+        let pageList = [];
+        const numberPerPage = 2;
         const begin = ((currentPage -1)* numberPerPage)
         const end = begin + numberPerPage; 
         return pageList = array.slice (begin, end)
@@ -150,7 +150,7 @@ class BabyFoodOutput extends React.Component {
                         <Icon name='chevron right' />
                     </Menu.Item>
                 </Menu>
-            
+                <Pages food={food}/>
                 <EditBabyInput openModal={openModal} editFood={editFood} isClose={this.closeModal} onEdit={onEdit} />
             </div>
 
