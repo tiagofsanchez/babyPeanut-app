@@ -1,12 +1,10 @@
 import React from 'react';
 import { Table, Button, Label, Menu, Icon } from 'semantic-ui-react';
 import './BabyOutputForm.css'
-import * as moment from 'moment';
+import moment from 'moment';
 import EditBabyInput from './EditBabyInput';
 import Pages from './Pages';
 import ExpandTable from './ExpandTable';
-
-
 
 class BabyFoodOutput extends React.Component {
 
@@ -18,7 +16,7 @@ class BabyFoodOutput extends React.Component {
 
     }
 
-    /* Will change the varible that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
+    /* Will change the variable that controls the Modal and will pass the information to the Modal to enable the user to change it in a new form */
     handleEditClick = (event, item) => {
         const { openModal } = this.state;
         this.setState({
@@ -30,13 +28,13 @@ class BabyFoodOutput extends React.Component {
     /* Will close the model by changing the state of the component openModal */
     closeModal = (isClose) => {
         this.setState({
-            openModal: isClose, 
+            openModal: isClose,
             openTable: isClose
         })
     }
 
     /* Will open the modal with the full table */
-    openTable = () => { 
+    openTable = () => {
         const { openTable } = this.state;
         this.setState({
             openTable: !openTable
@@ -48,7 +46,7 @@ class BabyFoodOutput extends React.Component {
         this.props.entryDelete(id)
     }
 
-    /* Calculting the number of pages that I need in my pagination */
+    /* Calculating the number of pages that I need in my pagination */
     getNumberOfPages = (array) => {
         const numberPerPage = 2;
         if (array.length < numberPerPage) {
@@ -70,13 +68,13 @@ class BabyFoodOutput extends React.Component {
         return pageList = array.slice(begin, end)
     }
 
-    changeCurrenPagetHandler = (pageNumber) => { 
+    changeCurrenPagetHandler = (pageNumber) => {
         this.setState({
             currentPage: pageNumber,
         })
         console.log(this.state.currentPage)
     }
-    
+
     render() {
 
         const { openModal, editFood, currentPage , openTable } = this.state;
@@ -84,8 +82,6 @@ class BabyFoodOutput extends React.Component {
 
         const pages = this.getNumberOfPages(food.data);
         const list = this.getLoadList(food.data);
-
-
         return (
             <div style={{ margin: "10px" }}>
                 <Table unstackable size="small" >
@@ -98,14 +94,11 @@ class BabyFoodOutput extends React.Component {
                             <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-
-                    {/* This will need to be here so that the header of the table doesn't repeat itself */}
-                    {list && list.map(item => {
-                        const newDate = item.datetime.substring(6, 10) + -+ item.datetime.substring(3, 5) + -+ item.datetime.substring(0, 2) + " " + item.datetime.substring(11, 16);
-                        return (
-                            <Table.Body key={item.id}>
-                                <Table.Row >
-                                    <Table.Cell singleLine><Label>{moment(newDate).format('Do, MMM, hA')}</Label></Table.Cell>
+                    <Table.Body>
+                        {list && list.map(item => {
+                            return (
+                                <Table.Row key={item.id}>
+                                    <Table.Cell singleLine><Label>{moment(item.datetime, "DD-MM-YYYY hh:mm").format('Do, MMM, hA')}</Label></Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.breast : <p>formula</p>}</Table.Cell>
                                     <Table.Cell >{item.disabledFormula ? item.duration : item.quantity}</Table.Cell>
                                     <Table.Cell >{item.text}</Table.Cell>
@@ -126,9 +119,9 @@ class BabyFoodOutput extends React.Component {
                                         />
                                     </Table.Cell>
                                 </Table.Row>
-                            </Table.Body>
-                        )
-                    })}
+                            )
+                        })}
+                    </Table.Body>
                 </Table>
                 <Button
                     floated="right"
